@@ -23,3 +23,22 @@ void PrintScreen::PrintString(short x, short y, string printStr, unsigned short 
 	SetColor(COLOR_WHITE);
 }
 
+void PrintScreen::PrintTile(short x, short y, string tileStr, unsigned short color)
+{
+	PrintScreen::PrintString(x + 0, y, "忙", color);
+	PrintScreen::PrintString(x + 1, y, "式", color);
+	PrintScreen::PrintString(x + 2, y, "式", color);
+	PrintScreen::PrintString(x + 3, y, "式", color);
+	PrintScreen::PrintString(x + 4, y, "忖", color);
+
+	PrintScreen::PrintString(x + 0, y + 1, "弛", color);
+	PrintScreen::PrintString(x + 1, y + 1, tileStr, color);
+	PrintScreen::PrintString(x + 4, y + 1, "弛", color);
+
+	PrintScreen::PrintString(x + 0, y + 2, "戌", color);
+	PrintScreen::PrintString(x + 1, y + 2, "式", color);
+	PrintScreen::PrintString(x + 2, y + 2, "式", color);
+	PrintScreen::PrintString(x + 3, y + 2, "式", color);
+	PrintScreen::PrintString(x + 4, y + 2, "戎", color);
+}
+
