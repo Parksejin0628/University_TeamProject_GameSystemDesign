@@ -1,31 +1,25 @@
 #pragma once
 #include"PrintScreen.h"
 
-void PrintScreen::setColor(unsigned short color)
+void PrintScreen::SetColor(unsigned short color)
 {
 	SetConsoleTextAttribute(GetStdHandle(STD_OUTPUT_HANDLE), color);
 
 	return;
 }
 
-void PrintScreen::goto_xy(short x, short y)
+void PrintScreen::Goto_xy(short x, short y)
 {
 	HANDLE handle = GetStdHandle(STD_OUTPUT_HANDLE);
 	Position pos = { x, y };
 	SetConsoleCursorPosition(handle, pos);
 }
 
-void PrintScreen::goto_xy(Position pos)
+void PrintScreen::PrintString(short x, short y, string printStr, unsigned short color)
 {
-	HANDLE handle = GetStdHandle(STD_OUTPUT_HANDLE);
-	SetConsoleCursorPosition(handle, pos);
-}
-
-void PrintScreen::printScreen(short x, short y, string printStr, unsigned short color)
-{
-	setColor(color);
-	goto_xy(x, y);
+	SetColor(color);
+	Goto_xy(x, y);
 	cout << printStr;
-	setColor(COLOR_WHITE);
+	SetColor(COLOR_WHITE);
 }
 

@@ -18,8 +18,7 @@ class PrintScreen
 private:
 
 public:
-	static void setColor(unsigned short color = COLOR_WHITE);	//출력의 색을 변화시키는 함수
-	static void goto_xy(short x, short y);						//출력 시작 부분을 x, y부분으로 옮김, 좌측상단이 (0, 0)이다. 행렬을 생각하면 편하다.
-	static void goto_xy(Position pos);							//Position를 인자로 전달하는 형태의 goto_xy함수 오버로딩
-	static void printScreen(short x, short y, string printStr, unsigned short color = COLOR_WHITE);	//콘솔의 x, y좌표에 color 색으로 printStr을 출력
+	static void SetColor(unsigned short color = COLOR_WHITE);	//출력의 색을 변화시키는 함수
+	static void Goto_xy(short x, short y);						//출력 시작 부분을 x, y부분으로 옮김, 좌측상단이 (0, 0)이다. 행렬을 생각하면 편하다.
+	static void PrintString(short x, short y, string printStr, unsigned short color = COLOR_WHITE);	//콘솔의 x, y좌표에 color 색으로 printStr을 출력
 };
