@@ -32,7 +32,7 @@ void PrintScreen::PrintTile(short x, short y, string tileStr, unsigned short col
 	PrintScreen::PrintString(x + 4, y, "¦¤", color);
 
 	PrintScreen::PrintString(x + 0, y + 1, "¦¢", color);
-	PrintScreen::PrintString(x + 1, y + 1, tileStr, color);
+	PrintScreen::PrintString(x + 1, y + 1, tileStr.substr(0, 3), color);
 	PrintScreen::PrintString(x + 4, y + 1, "¦¢", color);
 
 	PrintScreen::PrintString(x + 0, y + 2, "¦¦", color);
