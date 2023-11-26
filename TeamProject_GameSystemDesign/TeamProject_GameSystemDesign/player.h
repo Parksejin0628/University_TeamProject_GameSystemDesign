@@ -3,8 +3,7 @@
 #include "card.h"
 
 class Player { 
-    Card* cards[PLAYER_DECK_NUMBER]; //유저가 가지고 있는 카드
-    int userCost;//유저가 초기 가지고 있는 코스트
+    Card* cards[PLAYER_DECK_NUMBER]; //유저가 가지고 있는 카드 13장
     int playerTurn;
 
 public:

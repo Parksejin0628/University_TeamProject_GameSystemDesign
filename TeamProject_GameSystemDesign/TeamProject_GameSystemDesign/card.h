@@ -7,22 +7,18 @@
 using namespace std;
 
 class Card {
-    int cost;
-    int type;
-    int upgradeStep;
-    string name;
+    int type;//매크로
+    int index;//카드의 위치( 왼쪽 기준 )
+    int upgradeStep;//업그레이드 단계
+    string name;//카드 이름
 
 public:
-    Card(int cost, int type, int upgradeStep = 1, string name);
-    int getCost();
+    Card(int type, int upgradeStep = 1, string name);
     int getType();
+    int getIndex();
+    int getUpgradeStep();
     string getName();
-    Card operator+(Card& other);
+    void setIndex(int &idx);
+    Card operator+(Card& other);//기획안에 맞춰 수정 필요
 };
 
-class SpecialCard : public Card {
-    string skill;
-
-public:
-    string getSkill();
-};

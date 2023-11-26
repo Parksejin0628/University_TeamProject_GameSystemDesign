@@ -4,31 +4,17 @@
 
 using namespace std;
 
-Player::Player() {
-    srand(static_cast<unsigned>(time(0)));
-
-    for (int i = 0; i < PLAYER_DECK_NUMBER; i++) {
-        int cost = NORMAL_CARD_COST;
-        int type = rand() % 5 + 1;
-        string name;
-
-        if (type == SQURE_SHAPE_TYPE)
-            name = "square";
-        else if (type == STRAIGHT_TYPE)
-            name = "straightShape";
-        else if (type == T_SHPAE_TYPE)
-            name = "tShape";
-        else if (type == Z_SHAPE_TYPE)
-            name = "zShape";
-        else if (type == L_SHAPE_TYPE)
-            name = "lShape";
-
-        int upgradeStep = 1;
-        cards[i] = new Card(cost, type, upgradeStep, name);
+Player::Player() {//Init에서 cards배열중에 2개 뽑는거 구현
+    for (int i = 0; i < 5; i++) {
+        cards[i] = new Card(WIDTH_TYPE, 1, "widthType");
     }
-
-    this->userCost = USER_COST;
-    this->playerTurn = PLAYER_TURN;
+    for (int i = 5; i < 10; i++) {
+        cards[i] = new Card(LENGTH_TYPE, 1, "lengthType");
+    }
+    for (int i = 10; i < PLAYER_DECK_NUMBER; i++) {
+        cards[i] = new Card(DOT_TYPE, 1, "dotType");
+    }
+    this->playerTurn = PLAYER_STAGE1_TURN;//플레이어가 스테이지 1을 조작한다고 가정, 조건문 써서 스테이지 5
 }
 
 Card Player::playerSelect() {
