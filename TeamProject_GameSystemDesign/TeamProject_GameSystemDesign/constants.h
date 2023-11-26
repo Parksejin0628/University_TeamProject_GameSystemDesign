@@ -1,15 +1,22 @@
 ﻿#pragma once
-
-#define WIDTH_TYPE 1
-#define LENGTH_TYPE 2
-#define DOT_TYPE 3
-
-#define X_TYPE 4
-#define LONG_WIDTH_TYPE 5
-#define LONG_LENGTH-TYPE 6
-#define SQURE_TYPE 7
-
-#define PLAYER_DECK_NUMBER 13
+enum CardType {
+    WIDTH_TYPE = 1,
+    LENGTH_TYPE = 2,
+    DOT_TYPE = 3,
+    X_TYPE = 4,
+    LONG_WIDTH_TYPE = 5,
+    LONG_LENGTH_TYPE = 6,
+    SQUARE_TYPE = 7,
+    PURIFICATION_TYPE = 8,
+    CROSS_TYPE = 9,
+    PURIFICATION_CROSS_TYPE = 10,
+    UPGRADE_SQUARE_TYPE = 11,
+    UPGRADE_X_TYPE = 12,
+    UPGRADE_CROSS_TYPE = 13,
+    HELLFIRE_TYPE = 14,
+};
+//초기 플레이어 덱 카드 수
+#define INIT_PLAYER_DECK_NUMBER 13
 
 #define PLAYER_STAGE1_TURN 4
 #define PLAYER_STAGE2_TURN 7

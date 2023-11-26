@@ -3,7 +3,7 @@
 #include "card.h"
 
 class Player { 
-    Card* cards[PLAYER_DECK_NUMBER]; //유저가 가지고 있는 카드 13장
+    Card* cards[INIT_PLAYER_DECK_NUMBER]; //유저가 가지고 있는 카드 13장
     int playerTurn;
 
 public:

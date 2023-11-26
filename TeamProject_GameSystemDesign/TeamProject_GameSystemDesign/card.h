@@ -7,18 +7,18 @@
 using namespace std;
 
 class Card {
-    int type;//매크로
-    int index;//카드의 위치( 왼쪽 기준 )
-    int upgradeStep;//업그레이드 단계
-    string name;//카드 이름
+    int type;       // 카드 타입
+    int index;      // 카드의 위치 (왼쪽 기준)
+    string name;    // 카드 이름
+    bool isActive;  // 카드 활성 상태
 
 public:
-    Card(int type, int upgradeStep = 1, string name);
+    Card(int type, string name, bool isActive);
     int getType();
     int getIndex();
-    int getUpgradeStep();
     string getName();
-    void setIndex(int &idx);
-    Card operator+(Card& other);//기획안에 맞춰 수정 필요
+    void setIndex(int idx);
+    void setActive(bool active);
+    Card operator+(Card& other);
+    Card createMergedCard(Card& other);
 };
-

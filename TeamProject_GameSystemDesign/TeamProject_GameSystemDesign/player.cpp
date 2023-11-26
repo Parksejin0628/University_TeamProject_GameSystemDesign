@@ -14,17 +14,17 @@ Player::Player() {//Init에서 cards배열중에 2개 뽑는거 구현
     for (int i = 10; i < PLAYER_DECK_NUMBER; i++) {
         cards[i] = new Card(DOT_TYPE, 1, "dotType");
     }
-    this->playerTurn = PLAYER_STAGE1_TURN;//플레이어가 스테이지 1을 조작한다고 가정, 조건문 써서 스테이지 5
+    this->playerTurn = PLAYER_STAGE1_TURN;//플레이어가 스테이지 1을 조작한다고 가정, 조건문 써서 스테이지 구현 예정
 }
 
 Card Player::playerSelect() {
-    int playerSelection, cardPos;
+    int playerSelection, cardPosX, cardPosY;
     cout << "몇 번째 카드를 선택할 것 인가요?" << endl;
     cin >> playerSelection;
-    cout << "어느 위치의 카드를 낼 것 인가요?" << endl;
-    cin >> cardPos;
+    cout << "어느 위치에 카드를 낼 것 인가요?(x와y좌표를 입력하시오)" << endl;
+    cin >> cardPosX>>cardPosY;
 
-    if (cardPos >= 1 && cardPos <= PLAYER_DECK_NUMBER) {
+    if (cardPosX >= 1 &&cardPosY>=1 && playerSelection <= PLAYER_DECK_NUMBER) { //유효한 입력
         this->playerTurn--;
         delete this->cards[cardPos - 1];
         this->cards[cardPos - 1] = nullptr;
