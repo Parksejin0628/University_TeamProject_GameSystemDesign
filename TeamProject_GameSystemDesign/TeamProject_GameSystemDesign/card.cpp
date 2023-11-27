@@ -11,16 +11,8 @@ int Card::getType(){
     return this->type;
 }
 
-int Card::getIndex(){
-    return this->index;
-}
-
 string Card::getName(){
     return this->name;
-}
-
-void Card::setIndex(int& idx) {
-    this->index = idx;
 }
 
 void Card::setActive(bool active) {
@@ -59,4 +51,8 @@ Card Card::createMergedCard(Card& other) {
     else if ((type == CROSS_TYPE && other.type == UPGRADE_SQUARE_TYPE) || (type == UPGRADE_SQUARE_TYPE && other.type == CROSS_TYPE)) {
         return Card(HELLFIRE_TYPE, "Hell Fire", true);
     }
+}
+
+Purification::purify() {
+    this->purification = true;
 }
