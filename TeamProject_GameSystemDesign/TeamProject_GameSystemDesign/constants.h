@@ -1,19 +1,19 @@
 ﻿#pragma once
 enum CardType {
-    WIDTH_TYPE = 1,
-    LENGTH_TYPE = 2,
-    DOT_TYPE = 3,
-    X_TYPE = 4,
-    LONG_WIDTH_TYPE = 5,
-    LONG_LENGTH_TYPE = 6,
-    SQUARE_TYPE = 7,
-    PURIFICATION_TYPE = 8,
-    CROSS_TYPE = 9,
-    PURIFICATION_CROSS_TYPE = 10,
-    UPGRADE_SQUARE_TYPE = 11,
-    UPGRADE_X_TYPE = 12,
-    UPGRADE_CROSS_TYPE = 13,
-    HELLFIRE_TYPE = 14,
+    WIDTH_TYPE = 1,                 //(기본)가로 카드
+    LENGTH_TYPE = 2,                //(기본)세로 카드
+    DOT_TYPE = 3,                   //(기본)점 카드
+    X_TYPE = 4,                     //X모양 카드
+    LONG_WIDTH_TYPE = 5,            //긴 가로 카드
+    LONG_LENGTH_TYPE = 6,           //긴 세로 카드
+    SQUARE_TYPE = 7,                // 3*3 네모 카드
+    PURIFICATION_TYPE = 8,          //정화 카드
+    CROSS_TYPE = 9,                 //(합체) 십자가 카드
+    PURIFICATION_CROSS_TYPE = 10,   //(합체) 정화 십자가 카드
+    UPGRADE_SQUARE_TYPE = 11,       //(합체) 100% 3*3 네모 카드
+    UPGRADE_X_TYPE = 12,            // 7*7 X 모양 카드
+    UPGRADE_CROSS_TYPE = 13,        // 15*15 + 모양 카드
+    HELLFIRE_TYPE = 14,             // 헬파이어 카드
 };
 
 #define INITIAL_PLAYER_DECK_NUMBER 13

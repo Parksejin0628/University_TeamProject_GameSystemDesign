@@ -127,12 +127,22 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
-    <ClInclude Include="PrintScreen.h" />
+    <ClInclude Include="Card.h" />
+    <ClInclude Include="CardManager.h" />
+    <ClInclude Include="GameManager.h" />
+    <ClInclude Include="ScreenManager.h" />
     <ClInclude Include="ProgramBase.h" />
+    <ClInclude Include="Tile.h" />
+    <ClInclude Include="TileManager.h" />
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="card.cpp" />
+    <ClCompile Include="GameManager.cpp" />
     <ClCompile Include="Main.cpp" />
-    <ClCompile Include="PrintScreen.cpp" />
+    <ClCompile Include="CardManager.cpp" />
+    <ClCompile Include="ScreenManager.cpp" />
+    <ClCompile Include="Tile.cpp" />
+    <ClCompile Include="TileManager.cpp" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

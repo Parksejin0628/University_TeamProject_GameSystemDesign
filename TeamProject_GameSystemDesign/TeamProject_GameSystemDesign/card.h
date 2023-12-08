@@ -2,7 +2,7 @@
 
 #include <iostream>
 #include <string>
-#include"constants.h"
+#include"ProgramBase.h"
 
 using namespace std;
 
@@ -12,6 +12,7 @@ class Card {
     bool isActive;  // 카드 활성 상태
 
 public:
+    Card();
     Card(int type, string name, bool isActive);
     int getType();
     string getName();
