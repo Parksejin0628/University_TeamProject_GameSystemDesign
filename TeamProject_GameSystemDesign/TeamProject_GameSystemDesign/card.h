@@ -17,75 +17,88 @@ public:
     void setActive(bool active);
     Card operator+(Card& other);
     Card createMergedCard(Card& other);
-    virtual void destroyTile(int &x, int &y) = 0;
+    virtual void destroyTile(int &x, int &y);
 };
 
 class widthCard : public Card {
 public:
+    widthCard(CardType type, string name, bool isActive) : Card(type, name, isActive) {}
     void destroyTile(int &x, int &y);
 };
 
 class lengthCard : public Card {
 public:
+    lengthCard(CardType type, string name, bool isActive) : Card(type, name, isActive) {}
     void destroyTile(int& x, int& y);
 };
 
 class dotCard : public Card {
 public:
+    dotCard(CardType type, string name, bool isActive) : Card(type, name, isActive) {}
     void destroyTile(int& x, int& y);
 };
 
 class xCard : public Card {
 public:
+    xCard(CardType type, string name, bool isActive) : Card(type, name, isActive) {}
     void destroyTile(int& x, int& y);
 };
 
 class longWidthCard : public Card {
 public:
+    longWidthCard(CardType type, string name, bool isActive) : Card(type, name, isActive) {}
     void destroyTile(int& x, int& y);
 };
 
 class longLengthCard : public Card {
 public:
+    longLengthCard(CardType type, string name, bool isActive) : Card(type, name, isActive) {}
     void destroyTile(int& x, int& y);
 };
 
 class squareCard : public Card {
 public:
+    squareCard(CardType type, string name, bool isActive) : Card(type, name, isActive) {}
     void destroyTile(int& x, int& y);
 };
 
 class purificationCard :public Card {
 public:
     bool isClear;
-    purificationCard(int type, string name, bool isActive, bool isClear);
+    purificationCard(CardType type, string name, bool isActive, bool isClear) : Card(type, name, isActive),isClear(isClear){}
     void destroyTile(int& x, int& y);
 };
 
 class crossCard : public Card {
 public:
+    crossCard(CardType type, string name, bool isActive) : Card(type, name, isActive) {}
     void destroyTile(int& x, int& y);
 };
 
 class purificationCrossCard : public purificationCard {
 public:
+    purificationCrossCard(CardType type, string name, bool isActive) : purificationCard(type, name, isActive,isClear) {}
     void destroyTile(int& x, int& y);
 };
 
 class upgradeSquareCard : public Card {
 public:
+    upgradeSquareCard(CardType type, string name, bool isActive) : Card(type, name, isActive) {}
     void destroyTile(int& x, int& y);
 };
 
 class upgradeXCard : public Card {
 public:
+    upgradeXCard(CardType type, string name, bool isActive) : Card(type, name, isActive) {}
     void destroyTile(int& x, int& y);
 };
 class upgradeCrossCard : public Card {
 public:
+    upgradeCrossCard(CardType type, string name, bool isActive) : Card(type, name, isActive) {}
     void destroyTile(int& x, int& y);
 };
 class hellFireCard : public Card {
 public:
+    hellFireCard(CardType type, string name, bool isActive) : Card(type, name, isActive) {}
     void destroyTile(int& x, int& y);
 };

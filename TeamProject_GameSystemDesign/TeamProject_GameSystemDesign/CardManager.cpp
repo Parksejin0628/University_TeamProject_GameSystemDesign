@@ -21,7 +21,7 @@ CardManager::CardManager(int stage) { //스테이지 보상별 Player 생성
             cards.push(new squareCard(SQUARE_TYPE, "square", true));
         }
         else if (stage >= 5 && i < 19) {
-            cards.push(new purificationCard(PURIFICATION_TYPE, "purification", true));
+            cards.push(new purificationCard(PURIFICATION_TYPE, "purification", true,true));
         }
         else if (stage >= 6 && i < 22) {
             cards.push(new longLengthCard(LONG_LENGTH_TYPE, "long length", true));
@@ -81,7 +81,7 @@ CardManager::CardManager(int stage) { //스테이지 보상별 Player 생성
 void CardManager::playerSelect() {// 주석처리한건 따로 함수로 만들던지 타일 영역과 상호작용 필요
     int playerSelection;
     int tilePosX, tilePosY;
-    Card selectedCard;
+    Card* selectedCard;
     cout << "몇 번째 카드를 선택할 것 인가요?(1or2)" << endl;
     cin >> playerSelection;
     cout << "타일의 위치를 선택하세요(x,y)" << endl;
@@ -90,48 +90,48 @@ void CardManager::playerSelect() {// 주석처리한건 따로 함수로 만들�
     if (playerSelection == 1||playerSelection == 2) { //타일 파괴-> 캐스팅해서 구현
         this->playerTurn--;
 
-        switch (selectedCard.getType()) {
+        switch (selectedCard->getType()) {
         case 1:
-            dynamic_cast<widthCard*>selectedCard.destroyTile(tilePosX, tilePosY);
+            dynamic_cast<widthCard*>(selectedCard)->destroyTile(tilePosX, tilePosY);
             break;
         case 2:
-            dynamic_cast<lengthCard*>selectedCard.destroyTile(tilePosX, tilePosY);
+            dynamic_cast<lengthCard*>(selectedCard)->destroyTile(tilePosX, tilePosY);
             break;
         case 3:
-            dynamic_cast<dotCard*>selectedCard.destroyTile(tilePosX, tilePosY);
+            dynamic_cast<dotCard*>(selectedCard)->destroyTile(tilePosX, tilePosY);
             break;
         case 4:
-            dynamic_cast<xCard*>selectedCard.destroyTile(tilePosX, tilePosY);
+            dynamic_cast<xCard*>(selectedCard)->destroyTile(tilePosX, tilePosY);
             break;
         case 5:
-            dynamic_cast<longWidthCard*>selectedCard.destroyTile(tilePosX, tilePosY);
+            dynamic_cast<longWidthCard*>(selectedCard)->destroyTile(tilePosX, tilePosY);
             break;
         case 6:
-            dynamic_cast<longLengthCard*>selectedCard.destroyTile(tilePosX, tilePosY);
+            dynamic_cast<longLengthCard*>(selectedCard)->destroyTile(tilePosX, tilePosY);
             break;
         case 7:
-            dynamic_cast<squareCard*>selectedCard.destroyTile(tilePosX, tilePosY);
+            dynamic_cast<squareCard*>(selectedCard)->destroyTile(tilePosX, tilePosY);
             break;
         case 8:
-            dynamic_cast<purificationCard*>selectedCard.destroyTile(tilePosX, tilePosY);
+            dynamic_cast<purificationCard*>(selectedCard)->destroyTile(tilePosX, tilePosY);
             break;
         case 9:
-            dynamic_cast<crossCard*>selectedCard.destroyTile(tilePosX, tilePosY);
+            dynamic_cast<crossCard*>(selectedCard)->destroyTile(tilePosX, tilePosY);
             break;
         case 10:
-            dynamic_cast<purificationCrossCard*>selectedCard.destroyTile(tilePosX, tilePosY);
+            dynamic_cast<purificationCrossCard*>(selectedCard)->destroyTile(tilePosX, tilePosY);
             break;
         case 11:
-            dynamic_cast<upgradeSquareCard*>selectedCard.destroyTile(tilePosX, tilePosY);
+            dynamic_cast<upgradeSquareCard*>(selectedCard)->destroyTile(tilePosX, tilePosY);
             break;
         case 12:
-            dynamic_cast<upgradeXCard*>selectedCard.destroyTile(tilePosX, tilePosY);
+            dynamic_cast<upgradeXCard*>(selectedCard)->destroyTile(tilePosX, tilePosY);
             break;
         case 13:
-            dynamic_cast<upgradeCrossCard*>selectedCard.destroyTile(tilePosX, tilePosY);
+            dynamic_cast<upgradeCrossCard*>(selectedCard)->destroyTile(tilePosX, tilePosY);
             break;
         case 14:
-            dynamic_cast<hellFireCard*>selectedCard.destroyTile(tilePosX, tilePosY);
+            dynamic_cast<hellFireCard*>(selectedCard)->destroyTile(tilePosX, tilePosY);
             break;
         }
 
