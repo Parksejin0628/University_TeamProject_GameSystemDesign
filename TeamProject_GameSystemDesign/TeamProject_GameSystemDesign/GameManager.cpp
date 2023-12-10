@@ -12,7 +12,34 @@ void GameManager::InitGame()
 
 void GameManager::InitStage(int stageIndex)
 {
-	
+
+}
+
+void GameManager::ReadFromFile(){
+	ifstream fin("map.txt");
+
+	if(!fin) { 
+		cout << "파일을 열 수 없다";
+		return;
+	}
+
+	string line;
+	vector<string> stageData;
+
+	while (getline(fin, line)) {
+    if (line.empty()) {
+        // 빈 줄이 나오면 새로운 스테이지 생성
+        if (!stageData.empty()) {
+            this->stages.emplace_back(stageData);
+            stageData.clear();
+        }
+    }
+    else {
+        stageData.push_back(line);
+    }
+	}
+
+	fin.close();
 }
 /*
 void GameManager::InputPlayer()

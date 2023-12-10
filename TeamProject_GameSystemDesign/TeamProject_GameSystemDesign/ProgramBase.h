@@ -5,6 +5,7 @@
 #include<ctime>
 #include<Windows.h>
 #include<conio.h>
+#include <fstream>
 #include <algorithm>
 #include <random>
 #include <queue>

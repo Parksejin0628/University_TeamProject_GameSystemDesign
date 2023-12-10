@@ -3,18 +3,20 @@
 
 class Tile
 {
-protected:
+private:
   int x, y;
   TileType type;
 
 public:
-  Tile(int x, int y, TileType type) : x(x), y(y)
-  {
-    this->type = type;
-  }
-  bool CanInteract(TileType type);
+  Tile(){}
+
+  Tile(int x, int y, TileType type) : x(x), y(y), type(type) {}
+
+  bool CanInteract();
 
   void Create(TileType type);
 
   void Destory();
+
+  TileType GetType();
 };
