@@ -12,7 +12,7 @@ void GameManager::InitGame()
 
 void GameManager::InitStage(int stageIndex)
 {
-
+	
 }
 /*
 void GameManager::InputPlayer()

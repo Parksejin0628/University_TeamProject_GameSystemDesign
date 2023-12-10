@@ -11,9 +11,9 @@ private:
 	int stageIndex;
 	int nowTurn;
 	int maxTurn;
+
 public:
 	GameManager();
 	void InitGame();
 	void InitStage(int stageIndex);
-
 };

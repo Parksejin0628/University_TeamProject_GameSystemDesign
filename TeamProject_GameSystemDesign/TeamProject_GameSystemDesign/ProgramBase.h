@@ -14,20 +14,27 @@
 using namespace std;
 
 enum CardType {
-    WIDTH_TYPE = 1,                 //(±âº»)°¡·Î Ä«µå
-    LENGTH_TYPE = 2,                //(±âº»)¼¼·Î Ä«µå
-    DOT_TYPE = 3,                   //(±âº»)Á¡ Ä«µå
-    X_TYPE = 4,                     //X¸ð¾ç Ä«µå
-    LONG_WIDTH_TYPE = 5,            //±ä °¡·Î Ä«µå
-    LONG_LENGTH_TYPE = 6,           //±ä ¼¼·Î Ä«µå
-    SQUARE_TYPE = 7,                // 3*3 ³×¸ð Ä«µå
-    PURIFICATION_TYPE = 8,          //Á¤È­ Ä«µå
-    CROSS_TYPE = 9,                 //(ÇÕÃ¼) ½ÊÀÚ°¡ Ä«µå
-    PURIFICATION_CROSS_TYPE = 10,   //(ÇÕÃ¼) Á¤È­ ½ÊÀÚ°¡ Ä«µå
-    UPGRADE_SQUARE_TYPE = 11,       //(ÇÕÃ¼) 100% 3*3 ³×¸ð Ä«µå
-    UPGRADE_X_TYPE = 12,            // 7*7 X ¸ð¾ç Ä«µå
-    UPGRADE_CROSS_TYPE = 13,        // 15*15 + ¸ð¾ç Ä«µå
-    HELLFIRE_TYPE = 14,             // ÇïÆÄÀÌ¾î Ä«µå
+    WIDTH_TYPE = 1,                 //(ï¿½âº»)ï¿½ï¿½ï¿½ï¿½ Ä«ï¿½ï¿½
+    LENGTH_TYPE = 2,                //(ï¿½âº»)ï¿½ï¿½ï¿½ï¿½ Ä«ï¿½ï¿½
+    DOT_TYPE = 3,                   //(ï¿½âº»)ï¿½ï¿½ Ä«ï¿½ï¿½
+    X_TYPE = 4,                     //Xï¿½ï¿½ï¿½ Ä«ï¿½ï¿½
+    LONG_WIDTH_TYPE = 5,            //ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ Ä«ï¿½ï¿½
+    LONG_LENGTH_TYPE = 6,           //ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ Ä«ï¿½ï¿½
+    SQUARE_TYPE = 7,                // 3*3 ï¿½×¸ï¿½ Ä«ï¿½ï¿½
+    PURIFICATION_TYPE = 8,          //ï¿½ï¿½È­ Ä«ï¿½ï¿½
+    CROSS_TYPE = 9,                 //(ï¿½ï¿½Ã¼) ï¿½ï¿½ï¿½Ú°ï¿½ Ä«ï¿½ï¿½
+    PURIFICATION_CROSS_TYPE = 10,   //(ï¿½ï¿½Ã¼) ï¿½ï¿½È­ ï¿½ï¿½ï¿½Ú°ï¿½ Ä«ï¿½ï¿½
+    UPGRADE_SQUARE_TYPE = 11,       //(ï¿½ï¿½Ã¼) 100% 3*3 ï¿½×¸ï¿½ Ä«ï¿½ï¿½
+    UPGRADE_X_TYPE = 12,            // 7*7 X ï¿½ï¿½ï¿½ Ä«ï¿½ï¿½
+    UPGRADE_CROSS_TYPE = 13,        // 15*15 + ï¿½ï¿½ï¿½ Ä«ï¿½ï¿½
+    HELLFIRE_TYPE = 14,             // ï¿½ï¿½ï¿½ï¿½ï¿½Ì¾ï¿½ Ä«ï¿½ï¿½
+};
+
+enum TileType
+{
+    VOID_TILE = 0,
+    NORMAL_TILE = 1,
+    SPECIAL_TILE = 9,
 };
 
 #define INITIAL_PLAYER_DECK_NUMBER 13
@@ -43,3 +50,6 @@ enum CardType {
 #define PLAYER_STAGE7_TURN 10
 #define PLAYER_STAGE8_TURN 8
 #define PLAYER_STAGE9_TURN 11
+
+#define ROW 9
+#define COL 9
