@@ -87,6 +87,15 @@ void CardManager::playerSelect() {// 주석처리한건 따로 함수로 만들�
     cout << "타일의 위치를 선택하세요(x,y)" << endl;
     cin >> tilePosX >> tilePosY;
 
+    if (playerSelection == 1) {
+        selectedCard = hand.front();
+        hand.pop_front();//핸드의 첫번째 카드 삭제
+    }
+    else {
+        selectedCard = hand.back();
+        hand.pop_back();//핸드의 두번째 카드 삭제
+    }
+
     if (playerSelection == 1||playerSelection == 2) { //타일 파괴-> 캐스팅해서 구현
         this->playerTurn--;
 
@@ -135,14 +144,7 @@ void CardManager::playerSelect() {// 주석처리한건 따로 함수로 만들�
             break;
         }
 
-        if (playerSelection == 1) {
-            selectedCard = hand.front();
-            hand.pop_front();//핸드의 첫번째 카드 삭제
-        }
-        else {
-            selectedCard = hand.back();
-            hand.pop_back();//핸드의 두번째 카드 삭제
-        }
+        
         
 
         hand.push_back(ready.front());

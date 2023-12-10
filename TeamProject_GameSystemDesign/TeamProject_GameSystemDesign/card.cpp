@@ -232,9 +232,7 @@ void squareCard::destroyTile(int& x, int& y) {
     //    tileMap[x + 1][y + 1].isActive = false;
     //}
 }
-purificationCard::purificationCard(CardType type, string name, bool isActive, bool isClear): Card(type, name, isActive),isClear(isClear){
-    this->isClear = true;
-}
+
 void purificationCard::destroyTile(int& x, int& y) {
     /*tileMap[x][y].isActive = false;
     if (rand() % 100 < 70) {
