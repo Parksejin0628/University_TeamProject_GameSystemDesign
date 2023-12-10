@@ -1,6 +1,6 @@
 #include "tile.h"
 
-void Tile::Create(Tiletype type)
+void Tile::Create(TileType type)
 {
     this->type = type;
 }
@@ -10,7 +10,7 @@ void Tile::Destory()
     this->type = VOID_TILE;
 }
 
-bool Interact(Tiletype tile)
+bool Interact(TileType tile)
 {
     if (tile <= 0)
     {

@@ -12,9 +12,9 @@ public:
   {
     this->type = type;
   }
-  bool CanInteract(Tiletype type);
+  bool CanInteract(TileType type);
 
-  void Create(Tiletype type);
+  void Create(TileType type);
 
   void Destory();
 };
