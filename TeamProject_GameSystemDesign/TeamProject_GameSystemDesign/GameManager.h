@@ -13,7 +13,7 @@ private:
 	int maxTurn;
 public:
 	GameManager();
-	InitGame();
-	InitStage(int stageIndex);
+	void InitGame();
+	void InitStage(int stageIndex);
 
 };
