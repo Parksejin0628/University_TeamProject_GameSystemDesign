@@ -1,6 +1,11 @@
 ﻿#include "card.h"
 #include <cstdlib>
 
+Card::Card()
+{
+
+}
+
 Card::Card(CardType type) {
 
 }

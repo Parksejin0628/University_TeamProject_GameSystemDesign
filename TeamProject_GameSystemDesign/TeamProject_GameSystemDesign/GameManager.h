@@ -16,7 +16,7 @@ private:
 	int stageIndex;
 	int nowTurn;
 	int maxTurn;
-	vector<string> stages;
+	int cardChoice;
 public:
 	GameManager();
 	void InitGame();
@@ -24,4 +24,7 @@ public:
 	void ReadFromFile();
 	void InputPlayer();
 	void UseCard(int x, int y, Card card);
+
+	CardManager& GetCardManager();
+	TileManager& GetTIleManager();
 };

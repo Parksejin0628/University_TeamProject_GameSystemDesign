@@ -42,7 +42,7 @@ void ScreenManager::PrintTile(short x, short y, string tileStr, unsigned short c
 	PrintString(x + 4, y + 2, "┘", color);
 }
 
-void ScreenManager::PrintCard(short x, short y, string cardName, unsigned short color)
+void ScreenManager::PrintCard(short x, short y, Card card, unsigned short color)
 {
 	for (int ySize = 0; ySize < CARD_SIZE_Y; ySize++)
 	{
@@ -85,6 +85,15 @@ void ScreenManager::PrintCard(short x, short y, string cardName, unsigned short 
 		}
 	}
 
+	for (int i = 0; i < card.GetArea().size(); i++)
+	{
+		if (card.GetArea()[i].x > 4 || card.GetArea()[i].x < -4 || card.GetArea()[i].y > 4 || card.GetArea()[i].y < -4)
+		{
+			continue;
+		}
+		PrintString(x + CARD_SIZE_X/2 + card.GetArea()[i].x, y + CARD_SIZE_Y / 2 + card.GetArea()[i].y, "■", color);
+	}
+
 
 
 	PrintString(x + CARD_SIZE_X, y + CARD_SIZE_Y, "", color);
@@ -104,12 +113,12 @@ void ScreenManager::PrintStage(int stageIndex, unsigned short color)
 void ScreenManager::PrintInGame(int stageIndex, GameManager& gm)
 {
 	PrintStage(stageIndex, COLOR_BLUE);
-	PrintCard(CARD_HAND1_POSITION_X, CARD_HAND1_POSITION_Y, "HAND1", COLOR_GREEN);
-	PrintCard(CARD_HAND2_POSITION_X, CARD_HAND2_POSITION_Y, "HAND2", COLOR_GREEN);
-	PrintCard(CARD_WAIT1_POSITION_X, CARD_WAIT1_POSITION_Y, "WAIT1", COLOR_GREEN);
-	PrintCard(CARD_WAIT2_POSITION_X, CARD_WAIT2_POSITION_Y, "WAIT2", COLOR_GREEN);
-	PrintCard(CARD_TOMB_POSITION_X, CARD_TOMB_POSITION_Y, "TOMB", COLOR_GREEN);
-	PrintCard(CARD_DECK_POSITION_X, CARD_DECK_POSITION_Y, "DECK", COLOR_GREEN);
+	PrintCard(CARD_HAND1_POSITION_X, CARD_HAND1_POSITION_Y, *gm.GetCardManager().GetHand().front() , COLOR_GREEN);
+	PrintCard(CARD_HAND2_POSITION_X, CARD_HAND2_POSITION_Y, *gm.GetCardManager().GetHand().back(), COLOR_GREEN);
+	PrintCard(CARD_WAIT1_POSITION_X, CARD_WAIT1_POSITION_Y, *gm.GetCardManager().GetReady().front(), COLOR_GREEN);
+	PrintCard(CARD_WAIT2_POSITION_X, CARD_WAIT2_POSITION_Y, *gm.GetCardManager().GetReady().front(), COLOR_GREEN);
+	PrintCard(CARD_TOMB_POSITION_X, CARD_TOMB_POSITION_Y, Card(), COLOR_GREEN);
+	PrintCard(CARD_DECK_POSITION_X, CARD_DECK_POSITION_Y, Card(), COLOR_GREEN);
 	PrintString(TEXT_HAND_POSITION_X, TEXT_HAND_POSITION_Y, "HAND", COLOR_YELLOW);
 	PrintString(TEXT_NEXT_POSITION_X, TEXT_NEXT_POSITION_Y, "NEXT", COLOR_YELLOW);
 	PrintString(TEXT_REMOVE_POSITION_X, TEXT_REMOVE_POSITION_Y, "REMOVE : ", COLOR_YELLOW);
@@ -120,4 +129,17 @@ void ScreenManager::PrintInGame(int stageIndex, GameManager& gm)
 	PrintString(1, 27, " ");
 
 }
+
+void ScreenManager::PrintArea(short x, short y, Card card, unsigned short color, bool printProbability)
+{
+	for (int i = 0; i < card.GetArea().size(); i++)
+	{
+		if ( x + card.GetArea()[i].x > 8 || x + card.GetArea()[i].x < 0 || y + card.GetArea()[i].y > 8 || y + card.GetArea()[i].y < -4)
+		{
+			continue;
+		}
+		PrintTile((x + card.GetArea()[i].x) * TILE_SIZE_X + TILE_POSITION_X, (y + card.GetArea()[i].y)*TILE_SIZE_Y + TILE_POSITION_Y, printProbability ? to_string(card.GetArea()[i].probability) : "   ", color);
+	}
+}
+
 

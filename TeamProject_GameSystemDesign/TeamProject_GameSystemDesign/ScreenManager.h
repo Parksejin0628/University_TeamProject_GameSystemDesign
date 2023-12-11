@@ -55,7 +55,8 @@ public:
 	static void Goto_xy(short x, short y);						//출력 시작 부분을 x, y부분으로 옮김, 좌측상단이 (0, 0)이다. 행렬을 생각하면 편하다.
 	static void PrintString(short x, short y, string printStr, unsigned short color = COLOR_WHITE);	//콘솔의 x, y좌표에 color 색으로 printStr을 출력
 	static void PrintTile(short x, short y, string tileStr = "   ", unsigned short color = COLOR_WHITE); //콘솔 x, y좌표에 color 색의 타일 출력, 타일 안에 tileStr 출력
-	static void PrintCard(short x, short y, string cardName = "cardName", unsigned short color = COLOR_WHITE);
+	static void PrintCard(short x, short y, Card card, unsigned short color = COLOR_WHITE);
 	static void PrintStage(int stageIndex, unsigned short color = COLOR_WHITE);
 	static void PrintInGame(int stageIndex, GameManager& gm);
+	static void PrintArea(short x, short y, Card card, unsigned short color = COLOR_WHITE, bool printProbability = true);
 };

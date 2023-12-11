@@ -11,6 +11,7 @@ protected:
     CardType type;       // 카드 타입
     vector<Area> area;
 public:
+    Card();
     Card(CardType type);
     virtual ~Card();
     vector<Area>& GetArea();

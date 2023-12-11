@@ -50,7 +50,6 @@ void GameManager::InputPlayer()
 	string tileStr;
 	int x = 4;
 	int y = 4;
-	int cardIndex = 0;
 	bool keydown_up = false;
 	bool keydown_down = false;
 	bool keydown_left = false;
@@ -65,26 +64,26 @@ void GameManager::InputPlayer()
 		if (GetAsyncKeyState(VK_UP) && keydown_up == false)
 		{
 			keydown_up = true;
-			ScreenManager::PrintTile(x * TILE_SIZE_X + TILE_POSITION_X, y * TILE_SIZE_Y + TILE_POSITION_Y, tileStr, COLOR_BLUE);
+			ScreenManager::PrintArea(x, y, (cardChoice == 0) ? *cardManager.GetHand().front() : *cardManager.GetHand().back(), COLOR_BLUE, false);
 			if (y - 1 >= 0)
 			{
 				y--;
 			}
-			ScreenManager::PrintTile(x * TILE_SIZE_X + TILE_POSITION_X, y * TILE_SIZE_Y + TILE_POSITION_Y, tileStr, COLOR_RED);
+			ScreenManager::PrintArea(x, y, (cardChoice == 0) ? *cardManager.GetHand().front() : *cardManager.GetHand().back(), COLOR_RED);
 		}
-		else if (!GetAsyncKeyState(VK_UP))
+			else if (!GetAsyncKeyState(VK_UP))
 		{
 			keydown_up = false;
 		}
 		if (GetAsyncKeyState(VK_DOWN) && keydown_down == false)
 		{
 			keydown_down = true;
-			ScreenManager::PrintTile(x * TILE_SIZE_X + TILE_POSITION_X, y * TILE_SIZE_Y + TILE_POSITION_Y, tileStr, COLOR_BLUE);
-			if (y + 1 <= 9)
+			ScreenManager::PrintArea(x, y, (cardChoice == 0) ? *cardManager.GetHand().front() : *cardManager.GetHand().back(), COLOR_BLUE, false);
+			if (y + 1 < 9)
 			{
 				y++;
 			}
-			ScreenManager::PrintTile(x * TILE_SIZE_X + TILE_POSITION_X, y * TILE_SIZE_Y + TILE_POSITION_Y, tileStr, COLOR_RED);
+			ScreenManager::PrintArea(x, y, (cardChoice == 0) ? *cardManager.GetHand().front() : *cardManager.GetHand().back(), COLOR_RED);
 		}
 		else if (!GetAsyncKeyState(VK_DOWN))
 		{
@@ -93,12 +92,12 @@ void GameManager::InputPlayer()
 		if (GetAsyncKeyState(VK_LEFT) && keydown_left == false)
 		{
 			keydown_left = true;
-			ScreenManager::PrintTile(x * TILE_SIZE_X + TILE_POSITION_X, y * TILE_SIZE_Y + TILE_POSITION_Y, tileStr, COLOR_BLUE);
+			ScreenManager::PrintArea(x, y, (cardChoice == 0) ? *cardManager.GetHand().front() : *cardManager.GetHand().back(), COLOR_BLUE, false);
 			if (x - 1 >= 0)
 			{
 				x--;
 			}
-			ScreenManager::PrintTile(x * TILE_SIZE_X + TILE_POSITION_X, y * TILE_SIZE_Y + TILE_POSITION_Y, tileStr, COLOR_RED);
+			ScreenManager::PrintArea(x, y, (cardChoice == 0) ? *cardManager.GetHand().front() : *cardManager.GetHand().back(), COLOR_RED);
 		}
 		else if (!GetAsyncKeyState(VK_LEFT))
 		{
@@ -107,12 +106,12 @@ void GameManager::InputPlayer()
 		if (GetAsyncKeyState(VK_RIGHT) && keydown_right == false)
 		{
 			keydown_right = true;
-			ScreenManager::PrintTile(x * TILE_SIZE_X + TILE_POSITION_X, y * TILE_SIZE_Y + TILE_POSITION_Y, tileStr, COLOR_BLUE);
-			if (x + 1 <= 9)
+			ScreenManager::PrintArea(x, y, (cardChoice == 0) ? *cardManager.GetHand().front() : *cardManager.GetHand().back(), COLOR_BLUE, false);
+			if (x + 1 < 9)
 			{
 				x++;
 			}
-			ScreenManager::PrintTile(x * TILE_SIZE_X + TILE_POSITION_X, y * TILE_SIZE_Y + TILE_POSITION_Y, tileStr, COLOR_RED);
+			ScreenManager::PrintArea(x, y, (cardChoice == 0) ? *cardManager.GetHand().front() : *cardManager.GetHand().back(), COLOR_RED);
 		}
 		else if (!GetAsyncKeyState(VK_RIGHT))
 		{
@@ -121,15 +120,15 @@ void GameManager::InputPlayer()
 		if (GetAsyncKeyState(VK_SPACE) && keydown_space == false)
 		{
 			keydown_space = true;
-			if (cardIndex == 1)
+			if (cardChoice == 0)
 			{
-				ScreenManager::PrintCard(CARD_HAND1_POSITION_X, CARD_HAND1_POSITION_Y, "HAND1", COLOR_BLUE);
+				ScreenManager::PrintCard(CARD_HAND1_POSITION_X, CARD_HAND1_POSITION_Y, *cardManager.GetHand().front(), COLOR_BLUE);
 			}
-			else if (cardIndex == 2)
+			else if (cardChoice == 1)
 			{
-				ScreenManager::PrintCard(CARD_HAND2_POSITION_X, CARD_HAND2_POSITION_Y, "HAND2", COLOR_BLUE);
+				ScreenManager::PrintCard(CARD_HAND2_POSITION_X, CARD_HAND2_POSITION_Y, *cardManager.GetHand().back(), COLOR_BLUE);
 			}
-			ScreenManager::PrintTile(x * TILE_SIZE_X + TILE_POSITION_X, y * TILE_SIZE_Y + TILE_POSITION_Y, tileStr, COLOR_BLACK);
+			ScreenManager::PrintTile(x, y, tileStr, COLOR_BLACK);
 		}
 		else if (!GetAsyncKeyState(VK_SPACE))
 		{
@@ -138,9 +137,11 @@ void GameManager::InputPlayer()
 		if (GetAsyncKeyState(VK_1) && keydown_1 == false)
 		{
 			keydown_1 = true;
-			cardIndex = 1;
-			ScreenManager::PrintCard(CARD_HAND1_POSITION_X, CARD_HAND1_POSITION_Y, "HAND1", COLOR_RED);
-			ScreenManager::PrintCard(CARD_HAND2_POSITION_X, CARD_HAND2_POSITION_Y, "HAND2", COLOR_GREEN);
+			ScreenManager::PrintArea(x, y, (cardChoice == 0) ? *cardManager.GetHand().front() : *cardManager.GetHand().back(), COLOR_BLUE, false);
+			cardChoice = 0;
+			ScreenManager::PrintArea(x, y, (cardChoice == 0) ? *cardManager.GetHand().front() : *cardManager.GetHand().back(), COLOR_RED);
+			ScreenManager::PrintCard(CARD_HAND1_POSITION_X, CARD_HAND1_POSITION_Y, *cardManager.GetHand().front(), COLOR_RED);
+			ScreenManager::PrintCard(CARD_HAND2_POSITION_X, CARD_HAND2_POSITION_Y, *cardManager.GetHand().back(), COLOR_GREEN);
 		}
 		else if (!GetAsyncKeyState(VK_1))
 		{
@@ -149,9 +150,11 @@ void GameManager::InputPlayer()
 		if (GetAsyncKeyState(VK_2) && keydown_2 == false)
 		{
 			keydown_2 = true;
-			cardIndex = 2;
-			ScreenManager::PrintCard(CARD_HAND1_POSITION_X, CARD_HAND1_POSITION_Y, "HAND1", COLOR_GREEN);
-			ScreenManager::PrintCard(CARD_HAND2_POSITION_X, CARD_HAND2_POSITION_Y, "HAND2", COLOR_RED);
+			ScreenManager::PrintArea(x, y, (cardChoice == 0) ? *cardManager.GetHand().front() : *cardManager.GetHand().back(), COLOR_BLUE, false);
+			cardChoice = 1;
+			ScreenManager::PrintArea(x, y, (cardChoice == 0) ? *cardManager.GetHand().front() : *cardManager.GetHand().back(), COLOR_RED);
+			ScreenManager::PrintCard(CARD_HAND1_POSITION_X, CARD_HAND1_POSITION_Y, *cardManager.GetHand().front(), COLOR_GREEN);
+			ScreenManager::PrintCard(CARD_HAND2_POSITION_X, CARD_HAND2_POSITION_Y, *cardManager.GetHand().back(), COLOR_RED);
 		}
 		else if (!GetAsyncKeyState(VK_2))
 		{
@@ -160,13 +163,13 @@ void GameManager::InputPlayer()
 		if (GetAsyncKeyState(VK_R) && keydown_r == false)
 		{
 			keydown_r = true;
-			if (cardIndex == 1)
+			if (cardChoice == 0)
 			{
-				ScreenManager::PrintCard(CARD_HAND1_POSITION_X, CARD_HAND1_POSITION_Y, "HAND1", COLOR_YELLOW);
+				ScreenManager::PrintCard(CARD_HAND1_POSITION_X, CARD_HAND1_POSITION_Y, *cardManager.GetHand().front(), COLOR_YELLOW);
 			}
-			else if (cardIndex == 2)
+			else if (cardChoice == 1)
 			{
-				ScreenManager::PrintCard(CARD_HAND2_POSITION_X, CARD_HAND2_POSITION_Y, "HAND2", COLOR_YELLOW);
+				ScreenManager::PrintCard(CARD_HAND2_POSITION_X, CARD_HAND2_POSITION_Y, *cardManager.GetHand().back(), COLOR_YELLOW);
 			}
 
 		}
@@ -186,4 +189,13 @@ void GameManager::UseCard(int x, int y, Card card)
 			continue;
 		}
 	}
+}
+
+CardManager& GameManager::GetCardManager()
+{
+	return cardManager;
+}
+TileManager& GameManager::GetTIleManager()
+{
+	return tileManager;
 }

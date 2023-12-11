@@ -22,4 +22,8 @@ public:
     void rewardCard();//스테이지 정보받아서 cards에 push하기
     void deleteCard();//삭제권
     void shuffleTomb();//카드 부족하면 사용한 카드 셔플 하여 cards에 다시추가
+    queue<Card*>& GetCards() { return cards; }
+    list<Card*>& GetHand() { return hand; }
+    queue<Card*>& GetReady() { return ready; }
+    queue<Card*>& GetTomb() { return tomb; }
 };
