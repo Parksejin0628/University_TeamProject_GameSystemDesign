@@ -99,20 +99,49 @@ void ScreenManager::PrintCard(short x, short y, Card card, unsigned short color)
 	PrintString(x + CARD_SIZE_X, y + CARD_SIZE_Y, "", color);
 }
 
-void ScreenManager::PrintStage(int stageIndex, unsigned short color)
+void ScreenManager::PrintStage(TileManager& tileManager, unsigned short color)
 {
+	static Tile previousTile[9][9];
+	static bool init = false;
+	if (!init)
+	{
+		for (int y = 0; y < 9; y++)
+		{
+			for (int x = 0; x < 9; x++)
+			{
+				PrintTile(x * TILE_SIZE_X + TILE_POSITION_X, y * TILE_SIZE_Y + TILE_POSITION_Y, "   ", COLOR_GRAY);
+			}
+		}
+		init = true;
+	}
 	for (int y = 0; y < 9; y++)
 	{
 		for (int x = 0; x < 9; x++)
 		{
-			PrintTile(x * TILE_SIZE_X + TILE_POSITION_X, y * TILE_SIZE_Y + TILE_POSITION_Y, "", color);
+			if (previousTile[y][x].GetType() != tileManager.tile[y][x].GetType())
+			{
+				if (tileManager.tile[y][x].GetType() == VOID_TILE)
+				{
+					PrintTile(x * TILE_SIZE_X + TILE_POSITION_X, y * TILE_SIZE_Y + TILE_POSITION_Y, "   ", COLOR_GRAY);
+				}
+				else if (tileManager.tile[y][x].GetType() == SPECIAL_TILE)
+				{
+					PrintTile(x * TILE_SIZE_X + TILE_POSITION_X, y * TILE_SIZE_Y + TILE_POSITION_Y, "", COLOR_PURPLE);
+				}
+				else
+				{
+					PrintTile(x * TILE_SIZE_X + TILE_POSITION_X, y * TILE_SIZE_Y + TILE_POSITION_Y, "", color);
+				}
+				previousTile[y][x].Create(tileManager.tile[y][x].GetType());
+			}
+			
 		}
 	}
 }
 
-void ScreenManager::PrintInGame(int stageIndex, GameManager& gm)
+void ScreenManager::PrintInGame(GameManager& gm)
 {
-	PrintStage(stageIndex, COLOR_BLUE);
+	PrintStage(gm.GetTIleManager());
 	PrintCard(CARD_HAND1_POSITION_X, CARD_HAND1_POSITION_Y, *gm.GetCardManager().GetHand().front() , COLOR_GREEN);
 	PrintCard(CARD_HAND2_POSITION_X, CARD_HAND2_POSITION_Y, *gm.GetCardManager().GetHand().back(), COLOR_GREEN);
 	PrintCard(CARD_WAIT1_POSITION_X, CARD_WAIT1_POSITION_Y, *gm.GetCardManager().GetReady().front(), COLOR_GREEN);
@@ -130,16 +159,23 @@ void ScreenManager::PrintInGame(int stageIndex, GameManager& gm)
 
 }
 
-void ScreenManager::PrintArea(short x, short y, Card card, unsigned short color, bool printProbability)
+void ScreenManager::PrintArea(short x, short y, Card card, GameManager& gm, unsigned short color, bool printProbability)
 {
+	
 	for (int i = 0; i < card.GetArea().size(); i++)
 	{
-		if ( x + card.GetArea()[i].x > 8 || x + card.GetArea()[i].x < 0 || y + card.GetArea()[i].y > 8 || y + card.GetArea()[i].y < -4)
+		if ( x + card.GetArea()[i].x > 8 || x + card.GetArea()[i].x < 0 || y + card.GetArea()[i].y > 8 || y + card.GetArea()[i].y < 0)
 		{
 			continue;
 		}
+		
+		if (gm.GetTIleManager().tile[y + card.GetArea()[i].y][x + card.GetArea()[i].x].GetType() == VOID_TILE)
+
+			continue;		{
+		}
 		PrintTile((x + card.GetArea()[i].x) * TILE_SIZE_X + TILE_POSITION_X, (y + card.GetArea()[i].y)*TILE_SIZE_Y + TILE_POSITION_Y, printProbability ? to_string(card.GetArea()[i].probability) : "   ", color);
 	}
+	
 }
 
 

@@ -56,7 +56,7 @@ public:
 	static void PrintString(short x, short y, string printStr, unsigned short color = COLOR_WHITE);	//콘솔의 x, y좌표에 color 색으로 printStr을 출력
 	static void PrintTile(short x, short y, string tileStr = "   ", unsigned short color = COLOR_WHITE); //콘솔 x, y좌표에 color 색의 타일 출력, 타일 안에 tileStr 출력
 	static void PrintCard(short x, short y, Card card, unsigned short color = COLOR_WHITE);
-	static void PrintStage(int stageIndex, unsigned short color = COLOR_WHITE);
-	static void PrintInGame(int stageIndex, GameManager& gm);
-	static void PrintArea(short x, short y, Card card, unsigned short color = COLOR_WHITE, bool printProbability = true);
+	static void PrintStage(TileManager& tileManager, unsigned short color = COLOR_WHITE);
+	static void PrintInGame(GameManager& gm);
+	static void PrintArea(short x, short y, Card card, GameManager& gm, unsigned short color = COLOR_WHITE, bool printProbability = true);
 };

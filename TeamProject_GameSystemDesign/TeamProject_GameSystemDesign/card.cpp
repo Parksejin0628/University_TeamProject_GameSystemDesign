@@ -3,11 +3,11 @@
 
 Card::Card()
 {
-
+    type = DOT_TYPE;
 }
 
 Card::Card(CardType type) {
-
+    this->type = type;
 }
 Card::~Card() {
 

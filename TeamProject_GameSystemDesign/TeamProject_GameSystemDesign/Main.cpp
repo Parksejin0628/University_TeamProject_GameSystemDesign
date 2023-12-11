@@ -10,8 +10,15 @@ int main(void)
 
 	GameManager gameManager;
 
-	ScreenManager::PrintInGame(1, gameManager);
-	gameManager.InputPlayer();
+	
+	ScreenManager::PrintInGame(gameManager);
+	while (1)
+	{
+		gameManager.InputPlayer();
+		ScreenManager::PrintStage(gameManager.GetTIleManager());
+	}
+	
+	
 
 
 

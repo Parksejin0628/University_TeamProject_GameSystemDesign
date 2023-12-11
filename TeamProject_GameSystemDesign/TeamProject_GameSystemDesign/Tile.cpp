@@ -1,4 +1,5 @@
 #include "tile.h"
+
 void Tile::Create(int type)
 {
     this->type = type;

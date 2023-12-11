@@ -5,11 +5,12 @@ class TileManager
 {
 private:
 	int x, y;
-	Tile tile[9][9];
+	
 	vector<vector<string>> stage;
 	vector<string> stageData;
 
 public:
+  Tile tile[9][9];
   TileManager();
   void InitTile(int stageIndex); // 스테이지
   void SetTile(int y, int x, bool cure);

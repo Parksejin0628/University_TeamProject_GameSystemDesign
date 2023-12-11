@@ -15,9 +15,9 @@ TileManager::TileManager()
 
 void TileManager::InitTile(int stageIndex)
 {
-  for (int y = 0; y < ROW; y++)
+  for (int y = 0; y < stage[stageIndex].size(); y++)
   {
-    for (int x = 0; x < COL; x++)
+    for (int x = 0; x < stage[stageIndex][y].length(); x++)
     {
         int value = stoi(stage[stageIndex][y].substr(x, 1));
         tile[y][x].Create(value);

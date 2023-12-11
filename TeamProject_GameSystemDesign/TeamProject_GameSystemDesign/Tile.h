@@ -8,7 +8,7 @@ private:
   int type;
 
 public:
-  Tile(){}
+  Tile() : type(VOID_TILE), x(0), y(0) {  }
 
   Tile(int x, int y, int type) : x(x), y(y), type(type) {}
 
