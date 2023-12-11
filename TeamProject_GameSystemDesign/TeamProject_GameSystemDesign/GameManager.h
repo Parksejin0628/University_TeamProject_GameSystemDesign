@@ -2,6 +2,7 @@
 #include"ProgramBase.h"
 #include"TileManager.h"
 #include"CardManager.h"
+#include"ScreenManager.h"
 
 class GameManager
 {
@@ -17,4 +18,5 @@ public:
 	void InitGame();
 	void InitStage(int stageIndex);
 	void ReadFromFile();
+	void InputPlayer();
 };
