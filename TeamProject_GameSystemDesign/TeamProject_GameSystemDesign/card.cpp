@@ -1,42 +1,19 @@
 ﻿#include "card.h"
 #include <cstdlib>
 
-Card::Card(CardType type, string name, bool isActive) {
-    this->type = type;
-    this->name = name;
+Card::Card(CardType type) {
+    
 }
 
-CardType Card::getType(){
-    return this->type;
+vector<Area>& Card::GetArea()
+{
+    return area;
 }
 
-string Card::getName(){
-    return this->name;
-}
-
-void Card::setActive(bool active) {
-    this->isActive = true;
-}
-
-void Card::destroyTile(int &x, int &y) {
-
-}
-Card Card::operator+(Card& other){
-    if (!isActive && !other.isActive) {
-        Card resultCard = createMergedCard(other);
-
-        // 관련된 카드의 활성 상태를 업데이트
-        this->setActive(false);
-        resultCard.setActive(true);
-
-        return resultCard;
-    }
-    exit(1);
-}
-
-Card Card::createMergedCard(Card& other) {
+bool Card::CreateMergedCard(Card& other, Card& result) {
     if ((type == WIDTH_TYPE && other.type == LENGTH_TYPE) || (type == LENGTH_TYPE && other.type == WIDTH_TYPE)) {
-        return crossCard(CROSS_TYPE, "Cross", true);
+        result = CrossCard();
+        return true;
     }
     else if ((type == PURIFICATION_TYPE && other.type == PURIFICATION_TYPE)) {
         return purificationCard(PURIFICATION_CROSS_TYPE, "Purification Cross", true,true);
@@ -54,22 +31,107 @@ Card Card::createMergedCard(Card& other) {
         return hellFireCard(HELLFIRE_TYPE, "Hell Fire", true);
     }
 }
-void widthCard::destroyTile(int& x, int& y) {
 
-    //bool isNormal = Interact(x, y);//일반타일 인지 아닌지 확인
-    //if (isNormal) {
-    //    tileMap[x][y].isActive = false;
-    //}
-    //bool isNormalLeft = Interact(x, y - 1);//왼쪽타일 확인
-    //if (isNormalLeft && (rand() % 2 == 0)) {
-    //    tileMap[x][y - 1].isActive = false;
-    //}
+WidthCard::WidthCard() : Card(WIDTH_TYPE)
+{
+    area.push_back({ 0,0, 100});
+    area.push_back({ 1,0 , 50});
+    area.push_back({ -1,0 , 50});
+}
 
-    //bool isNormalRight = Interact(x, y + 1);//오른쪽 타일 확인
-    //if (isNormalRight && (rand() % 2 == 0)) {
-    //    tileMap[x][y + 1].isActive = false;
-    //}
-    ////의문인게 왼쪽카드가 없을수도 있지 않나? 즉 null일 수도 있잖아 이건 물어보는 걸로...
+
+WidthCard::WidthCard() : Card(WIDTH_TYPE)
+{
+    area.push_back({ 0,0, 100 });
+    area.push_back({ 1,0 , 50 });
+    area.push_back({ -1,0 , 50 });
+}
+
+LengthCard::LengthCard() : Card(LENGTH_TYPE)
+{
+    area.push_back({ 0,0, 100 });
+    area.push_back({ 1,0 , 50 });
+    area.push_back({ -1,0 , 50 });
+}
+
+DotCard::DotCard() : Card(DOT_TYPE)
+{
+    area.push_back({ 0,0, 100 });
+    area.push_back({ 1,0 , 50 });
+    area.push_back({ -1,0 , 50 });
+}
+
+XCard::XCard() : Card(X_TYPE)
+{
+    area.push_back({ 0,0, 100 });
+    area.push_back({ 1,0 , 50 });
+    area.push_back({ -1,0 , 50 });
+}
+
+LongWidthCard::LongWidthCard() : Card(LONG_WIDTH_TYPE)
+{
+    area.push_back({ 0,0, 100 });
+    area.push_back({ 1,0 , 50 });
+    area.push_back({ -1,0 , 50 });
+}
+
+LongLengthCard::LongLengthCard() : Card(LONG_WIDTH_TYPE)
+{
+    area.push_back({ 0,0, 100 });
+    area.push_back({ 1,0 , 50 });
+    area.push_back({ -1,0 , 50 });
+}
+
+SquareCard::SquareCard() : Card(SQUARE_TYPE)
+{
+    area.push_back({ 0,0, 100 });
+    area.push_back({ 1,0 , 50 });
+    area.push_back({ -1,0 , 50 });
+}
+
+PurificationCard::PurificationCard() : Card(PURIFICATION_TYPE)
+{
+    area.push_back({ 0,0, 100 });
+    area.push_back({ 1,0 , 50 });
+    area.push_back({ -1,0 , 50 });
+}
+
+CrossCard::CrossCard() : Card(CROSS_TYPE)
+{
+    area.push_back({ 0,0, 100 });
+    area.push_back({ 1,0 , 50 });
+    area.push_back({ -1,0 , 50 });
+}
+
+PurificationCrossCard::PurificationCrossCard() : Card(PURIFICATION_CROSS_TYPE)
+{
+    area.push_back({ 0,0, 100 });
+    area.push_back({ 1,0 , 50 });
+    area.push_back({ -1,0 , 50 });
+}
+UpgradeSquareCard::UpgradeSquareCard() : Card(UPGRADE_SQUARE_TYPE)
+{
+    area.push_back({ 0,0, 100 });
+    area.push_back({ 1,0 , 50 });
+    area.push_back({ -1,0 , 50 });
+}
+UpgradeXCard::UpgradeXCard() : Card(UPGRADE_X_TYPE)
+{
+    area.push_back({ 0,0, 100 });
+    area.push_back({ 1,0 , 50 });
+    area.push_back({ -1,0 , 50 });
+}
+UpgradeCrossCard::UpgradeCrossCard() : Card(UPGRADE_CROSS_TYPE)
+{
+    area.push_back({ 0,0, 100 });
+    area.push_back({ 1,0 , 50 });
+    area.push_back({ -1,0 , 50 });
+}
+HellFireCard::HellFireCard() : Card(HELLFIRE_TYPE)
+{
+    area.push_back({ 0,0, 100 });
+    area.push_back({ 1,0 , 50 });
+    area.push_back({ -1,0 , 50 });
 }
 
 void lengthCard::destroyTile(int& x, int& y) {
@@ -119,7 +181,18 @@ void xCard::destroyTile(int& x, int& y) {
     //    tileMap[x + 1][y + 1].isActive = false;
     //}
 }
+//longWidthCard::longWidthCard(CardType type, string name, bool isActive) : Card(type, name, isActive) {
+//    type = LONG_WIDTH_TYPE;
+//    name = "Long Width";
+//    isActive = true;
+//}
+void longWidthCard::checkArea() {
+    vector<Position>area;
+    for (SHORT i = -4; i < 5; i++) {
+        area.push_back({ i,0 });
+    }
 
+}
 void longWidthCard::destroyTile(int& x, int& y) {
     //bool isNormal = Interact(x, y);//일반카드 인지 아닌지 확인
     //if (isNormal) {

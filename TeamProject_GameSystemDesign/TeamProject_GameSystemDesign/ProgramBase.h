@@ -38,6 +38,13 @@ enum TileType
     SPECIAL_TILE = 9,
 };
 
+typedef struct Area
+{
+    int x;
+    int y;
+    int probability;
+}Area;
+
 #define INITIAL_PLAYER_DECK_NUMBER 13
 #define CARDS_ADDED_PER_STAGE 3
 #define MAX_PLAYER_DECK_NUMBER 50

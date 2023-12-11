@@ -2,103 +2,86 @@
 
 #include <iostream>
 #include <string>
-#include"constants.h"
+#include"ProgramBase.h"
 
 using namespace std;
 
 class Card {
+protected:
     CardType type;       // 카드 타입
-    string name;    // 카드 이름
-    bool isActive;  // 카드 활성 상태 -> 카드합치기 할때 사용함
+    vector<Area> area;
 public:
-    Card(CardType type, string name, bool isActive);
-    CardType getType();
-    string getName();
-    void setActive(bool active);
-    Card operator+(Card& other);
-    Card createMergedCard(Card& other);
-    virtual void destroyTile(int &x, int &y);
+    Card(CardType type);
+    vector<Area>& GetArea();
+    bool CreateMergedCard(Card& other, Card& result);
 };
 
-class widthCard : public Card {
+class WidthCard : public Card {
 public:
-    widthCard(CardType type, string name, bool isActive) : Card(type, name, isActive) {}
-    void destroyTile(int &x, int &y);
+
+    WidthCard();
 };
 
-class lengthCard : public Card {
+class LengthCard : public Card {
 public:
-    lengthCard(CardType type, string name, bool isActive) : Card(type, name, isActive) {}
-    void destroyTile(int& x, int& y);
+    LengthCard();
 };
 
-class dotCard : public Card {
+class DotCard : public Card {
 public:
-    dotCard(CardType type, string name, bool isActive) : Card(type, name, isActive) {}
-    void destroyTile(int& x, int& y);
+    DotCard();
 };
 
-class xCard : public Card {
+class XCard : public Card {
 public:
-    xCard(CardType type, string name, bool isActive) : Card(type, name, isActive) {}
-    void destroyTile(int& x, int& y);
+    XCard();
 };
 
-class longWidthCard : public Card {
+class LongWidthCard : public Card {
 public:
-    longWidthCard(CardType type, string name, bool isActive) : Card(type, name, isActive) {}
-    void destroyTile(int& x, int& y);
+    LongWidthCard();
 };
 
-class longLengthCard : public Card {
+class LongLengthCard : public Card {
 public:
-    longLengthCard(CardType type, string name, bool isActive) : Card(type, name, isActive) {}
-    void destroyTile(int& x, int& y);
+    LongLengthCard();
 };
 
-class squareCard : public Card {
+class SquareCard : public Card {
 public:
-    squareCard(CardType type, string name, bool isActive) : Card(type, name, isActive) {}
-    void destroyTile(int& x, int& y);
+    SquareCard();
 };
 
-class purificationCard :public Card {
+class PurificationCard :public Card {
 public:
-    bool isClear = true;
-    purificationCard(CardType type, string name, bool isActive, bool isClear) : Card(type, name, isActive),isClear(isClear){}
-    void destroyTile(int& x, int& y);
+    bool isClear;
+    PurificationCard();
 };
 
-class crossCard : public Card {
+class CrossCard : public Card {
 public:
-    crossCard(CardType type, string name, bool isActive) : Card(type, name, isActive) {}
-    void destroyTile(int& x, int& y);
+    CrossCard();
 };
 
-class purificationCrossCard : public purificationCard {
+class PurificationCrossCard : public PurificationCard {
 public:
-    purificationCrossCard(CardType type, string name, bool isActive) : purificationCard(type, name, isActive,isClear) {}
-    void destroyTile(int& x, int& y);
+    PurificationCrossCard();
 };
 
-class upgradeSquareCard : public Card {
+class UpgradeSquareCard : public Card {
 public:
-    upgradeSquareCard(CardType type, string name, bool isActive) : Card(type, name, isActive) {}
-    void destroyTile(int& x, int& y);
+    UpgradeSquareCard();
 };
 
-class upgradeXCard : public Card {
+class UpgradeXCard : public Card {
 public:
-    upgradeXCard(CardType type, string name, bool isActive) : Card(type, name, isActive) {}
-    void destroyTile(int& x, int& y);
+    UpgradeXCard();
 };
-class upgradeCrossCard : public Card {
+class UpgradeCrossCard : public Card {
 public:
-    upgradeCrossCard(CardType type, string name, bool isActive) : Card(type, name, isActive) {}
-    void destroyTile(int& x, int& y);
+    UpgradeCrossCard();
 };
-class hellFireCard : public Card {
+class HellFireCard : public Card {
 public:
-    hellFireCard(CardType type, string name, bool isActive) : Card(type, name, isActive) {}
-    void destroyTile(int& x, int& y);
+    HellFireCard();
 };
