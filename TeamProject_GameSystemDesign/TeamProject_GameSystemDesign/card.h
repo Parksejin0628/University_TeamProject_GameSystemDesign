@@ -64,7 +64,7 @@ public:
 
 class purificationCard :public Card {
 public:
-    bool isClear = true;
+    bool isClear;
     purificationCard(CardType type, string name, bool isActive, bool isClear) : Card(type, name, isActive),isClear(isClear){}
     void destroyTile(int& x, int& y);
 };
@@ -77,7 +77,7 @@ public:
 
 class purificationCrossCard : public purificationCard {
 public:
-    purificationCrossCard(CardType type, string name, bool isActive) : purificationCard(type, name, isActive,isClear) {}
+    purificationCrossCard(CardType type, string name, bool isActive,bool isClear) : purificationCard(type, name, isActive,isClear) {}
     void destroyTile(int& x, int& y);
 };
 

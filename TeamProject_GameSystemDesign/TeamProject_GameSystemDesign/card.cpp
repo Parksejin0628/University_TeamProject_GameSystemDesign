@@ -54,6 +54,11 @@ Card Card::createMergedCard(Card& other) {
         return hellFireCard(HELLFIRE_TYPE, "Hell Fire", true);
     }
 }
+//widthCard::widthCard(CardType type, string name, bool isActive) : Card(type, name, isActive) {
+//    type = WIDTH_TYPE;
+//    name = "Width";
+//    isActive = true;
+//}
 void widthCard::destroyTile(int& x, int& y) {
 
     //bool isNormal = Interact(x, y);//일반타일 인지 아닌지 확인
@@ -71,7 +76,11 @@ void widthCard::destroyTile(int& x, int& y) {
     //}
     ////의문인게 왼쪽카드가 없을수도 있지 않나? 즉 null일 수도 있잖아 이건 물어보는 걸로...
 }
-
+//lengthCard::lengthCard(CardType type, string name, bool isActive) : Card(type, name, isActive) {
+//    type = LENGTH_TYPE;
+//    name = "Length";
+//    isActive = true;
+//}
 void lengthCard::destroyTile(int& x, int& y) {
     //bool isNormal = Interact(x,y);//일반카드 인지 아닌지 확인
     //if (isNormal) {
@@ -87,13 +96,22 @@ void lengthCard::destroyTile(int& x, int& y) {
     //    tileMap[x+1][y].isActive = false;
     //}
 }
+//dotCard::dotCard(CardType type, string name, bool isActive) : Card(type, name, isActive) {
+//    type = DOT_TYPE;
+//    name = "Dot";
+//    isActive = true;
+//}
 void dotCard::destroyTile(int& x, int& y) {
     //bool isNormal = Interact(x, y);//일반카드 인지 아닌지 확인
     //if (isNormal) {
     //    tileMap[x][y].isActive = false;
     //}
 }
-
+//xCard::xCard(CardType type, string name, bool isActive) : Card(type, name, isActive) {
+//    type = X_TYPE;
+//    name = "X";
+//    isActive = true;
+//}
 void xCard::destroyTile(int& x, int& y) {
     //bool isNormal = Interact(x, y);//일반카드 인지 아닌지 확인
     //if (isNormal) {
@@ -119,7 +137,11 @@ void xCard::destroyTile(int& x, int& y) {
     //    tileMap[x + 1][y + 1].isActive = false;
     //}
 }
-
+//longWidthCard::longWidthCard(CardType type, string name, bool isActive) : Card(type, name, isActive) {
+//    type = LONG_WIDTH_TYPE;
+//    name = "Long Width";
+//    isActive = true;
+//}
 void longWidthCard::destroyTile(int& x, int& y) {
     //bool isNormal = Interact(x, y);//일반카드 인지 아닌지 확인
     //if (isNormal) {
@@ -153,7 +175,11 @@ void longWidthCard::destroyTile(int& x, int& y) {
     //    }
     //}
 }
-
+//longLengthCard::longLengthCard(CardType type, string name, bool isActive) : Card(type, name, isActive) {
+//    type = LONG_LENGTH_TYPE;
+//    name = "Width";
+//    isActive = true;
+//}
 void longLengthCard::destroyTile(int& x, int& y) {
     //bool isNormal = Interact(x, y);//일반카드 인지 아닌지 확인
     //if (isNormal) {
@@ -187,7 +213,11 @@ void longLengthCard::destroyTile(int& x, int& y) {
     //    }
     //}
 }
-
+//squareCard::squareCard(CardType type, string name, bool isActive) : Card(type, name, isActive) {
+//    type = SQUARE_TYPE;
+//    name = "Square";
+//    isActive = true;
+//}
 void squareCard::destroyTile(int& x, int& y) {
     //bool isNormal = Interact(x, y);//일반카드 인지 아닌지 확인
     //if (isNormal) {
@@ -232,7 +262,12 @@ void squareCard::destroyTile(int& x, int& y) {
     //    tileMap[x + 1][y + 1].isActive = false;
     //}
 }
-
+//purificationCard::purificationCard(CardType type, string name, bool isActive, bool isClear) : Card(type, name, isActive), isClear(isClear) {
+//    type = WIDTH_TYPE;
+//    name = "Width";
+//    isActive = true;
+//    isClear = true;
+//}
 void purificationCard::destroyTile(int& x, int& y) {
     /*tileMap[x][y].isActive = false;
     if (rand() % 100 < 70) {
@@ -242,7 +277,11 @@ void purificationCard::destroyTile(int& x, int& y) {
         tileMap[x][y + 1].isActive = false;
     }*/
 }
-
+//crossCard::crossCard(CardType type, string name, bool isActive) : Card(type, name, isActive) {
+//    type = CROSS_TYPE;
+//    name = "Cross";
+//    isActive = true;
+//}
 void crossCard::destroyTile(int& x, int& y) {
     //bool isNormal = Interact(x, y);//일반카드 인지 아닌지 확인
     //if (isNormal) {
@@ -267,7 +306,12 @@ void crossCard::destroyTile(int& x, int& y) {
     //    tileMap[x + 1][y].isActive = false;
     //}
 }
-
+//purificationCrossCard::purificationCrossCard(CardType type, string name, bool isActive, bool isClear) : purificationCard(type, name, isActive, isClear) {
+//    type = PURIFICATION_CROSS_TYPE;
+//    name = "Purification_Cross";
+//    isActive = true;
+//    isClear = true;
+//}
 void purificationCrossCard::destroyTile(int& x, int& y) {
     /*tileMap[x][y].isActive = false;
     tileMap[x-1][y].isActive = false;
@@ -275,7 +319,11 @@ void purificationCrossCard::destroyTile(int& x, int& y) {
     tileMap[x][y-1].isActive = false;
     tileMap[x][y+1].isActive = false;*/
 }
-
+//upgradeSquareCard::upgradeSquareCard(CardType type, string name, bool isActive) : Card(type, name, isActive) {
+//    type = UPGRADE_SQUARE_TYPE;
+//    name = "Upgrade_Square";
+//    isActive = true;
+//}
 void upgradeSquareCard::destroyTile(int& x, int& y) {
     //for (int i =-1; i <2; i++) {//일반타일 형태이면 100%로 파괴
     //    for (int j =-1; j < 2; j++) {
@@ -286,7 +334,11 @@ void upgradeSquareCard::destroyTile(int& x, int& y) {
     //    }
     //}
 }
-
+//upgradeXCard::upgradeXCard(CardType type, string name, bool isActive) : Card(type, name, isActive) {
+//    type = UPGRADE_X_TYPE;
+//    name = "Upgrade_X";
+//    isActive = true;
+//}
 void upgradeXCard::destroyTile(int& x, int& y) {
     //for (int i = - 3; i < 4; i++) {//일반타일 형태이면 100%로 파괴
     //    for (int j = -3; j <4; j++) {
@@ -299,7 +351,11 @@ void upgradeXCard::destroyTile(int& x, int& y) {
     //    }
     //}
 }
-
+//upgradeCrossCard::upgradeCrossCard(CardType type, string name, bool isActive) : Card(type, name, isActive) {
+//    type = UPGRADE_CROSS_TYPE;
+//    name = "Upgrade_Cross";
+//    isActive = true;
+//}
 void upgradeCrossCard::destroyTile(int& x, int& y) {
     //for (int i = -4; i < 5; i++) {//가로줄 전체 비활성화
     //    bool isNormal = Interact(x + i, y);
@@ -316,7 +372,11 @@ void upgradeCrossCard::destroyTile(int& x, int& y) {
     //    }
     //}
 }
-
+//hellFireCard::hellFireCard(CardType type, string name, bool isActive) : Card(type, name, isActive) {
+//    type = HELLFIRE_TYPE;
+//    name = "Hell_Fire";
+//    isActive = true;
+//}
 void hellFireCard::destroyTile(int& x, int& y) {
     //for (int i = x - 1; i < x + 2; i++) {//일반타일 형태이면 100%로 파괴
     //    for (int j = y - 1; j < y + 2; j++) {
