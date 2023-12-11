@@ -6,6 +6,7 @@
 #include <vector>
 #include <queue>
 #include <list>
+class Card;
 
 class CardManager {
     int deleteNum;//삭제권 개수

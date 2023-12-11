@@ -21,6 +21,9 @@ void Card::setActive(bool active) {
 void Card::destroyTile(int &x, int &y) {
 
 }
+void Card::checkArea() {
+
+}
 Card Card::operator+(Card& other){
     if (!isActive && !other.isActive) {
         Card resultCard = createMergedCard(other);
@@ -39,7 +42,7 @@ Card Card::createMergedCard(Card& other) {
         return crossCard(CROSS_TYPE, "Cross", true);
     }
     else if ((type == PURIFICATION_TYPE && other.type == PURIFICATION_TYPE)) {
-        return purificationCard(PURIFICATION_CROSS_TYPE, "Purification Cross", true,true);
+        return purificationCard(PURIFICATION_CROSS_TYPE, "Purification Cross", true, true);
     }
     else if ((type == SQUARE_TYPE && other.type == SQUARE_TYPE)) {
         return upgradeSquareCard(UPGRADE_SQUARE_TYPE, "Upgrade Square", true);
@@ -53,6 +56,8 @@ Card Card::createMergedCard(Card& other) {
     else if ((type == CROSS_TYPE && other.type == UPGRADE_SQUARE_TYPE) || (type == UPGRADE_SQUARE_TYPE && other.type == CROSS_TYPE)) {
         return hellFireCard(HELLFIRE_TYPE, "Hell Fire", true);
     }
+    else
+        exit(1);
 }
 //widthCard::widthCard(CardType type, string name, bool isActive) : Card(type, name, isActive) {
 //    type = WIDTH_TYPE;
@@ -60,7 +65,7 @@ Card Card::createMergedCard(Card& other) {
 //    isActive = true;
 //}
 void widthCard::destroyTile(int& x, int& y) {
-
+    checkArea();
     //bool isNormal = Interact(x, y);//일반타일 인지 아닌지 확인
     //if (isNormal) {
     //    tileMap[x][y].isActive = false;
@@ -76,11 +81,25 @@ void widthCard::destroyTile(int& x, int& y) {
     //}
     ////의문인게 왼쪽카드가 없을수도 있지 않나? 즉 null일 수도 있잖아 이건 물어보는 걸로...
 }
+
+void widthCard::checkArea() {
+    vector<Position>area;
+    area.push_back({ 0,0 });
+    area.push_back({ 1,0 });
+    area.push_back({ -1,0 });
+}
 //lengthCard::lengthCard(CardType type, string name, bool isActive) : Card(type, name, isActive) {
 //    type = LENGTH_TYPE;
 //    name = "Length";
 //    isActive = true;
 //}
+
+void lengthCard::checkArea() {
+    vector<Position>area;
+    area.push_back({ 0,0 });
+    area.push_back({ 0,1 });
+    area.push_back({ 0,-1 });
+}
 void lengthCard::destroyTile(int& x, int& y) {
     //bool isNormal = Interact(x,y);//일반카드 인지 아닌지 확인
     //if (isNormal) {
@@ -101,6 +120,12 @@ void lengthCard::destroyTile(int& x, int& y) {
 //    name = "Dot";
 //    isActive = true;
 //}
+
+void dotCard::checkArea() {
+    vector<Position>area;
+    area.push_back({ 0,0 });
+}
+
 void dotCard::destroyTile(int& x, int& y) {
     //bool isNormal = Interact(x, y);//일반카드 인지 아닌지 확인
     //if (isNormal) {
@@ -112,6 +137,14 @@ void dotCard::destroyTile(int& x, int& y) {
 //    name = "X";
 //    isActive = true;
 //}
+void xCard::checkArea() {
+    vector<Position>area;
+    area.push_back({ 0,0 });
+    area.push_back({ 1,1 });
+    area.push_back({ 1,-1 });
+    area.push_back({ -1,1 });
+    area.push_back({ -1,-1 });
+}
 void xCard::destroyTile(int& x, int& y) {
     //bool isNormal = Interact(x, y);//일반카드 인지 아닌지 확인
     //if (isNormal) {
@@ -142,6 +175,12 @@ void xCard::destroyTile(int& x, int& y) {
 //    name = "Long Width";
 //    isActive = true;
 //}
+void longWidthCard::checkArea() {
+    vector<Position>area;
+    for (SHORT i = -4; i < 5; i++) {
+        area.push_back({ i,0 });
+    }
+}
 void longWidthCard::destroyTile(int& x, int& y) {
     //bool isNormal = Interact(x, y);//일반카드 인지 아닌지 확인
     //if (isNormal) {
@@ -180,6 +219,13 @@ void longWidthCard::destroyTile(int& x, int& y) {
 //    name = "Width";
 //    isActive = true;
 //}
+
+void longLengthCard::checkArea() {
+    vector<Position>area;
+    for (SHORT i = -4; i < 5; i++) {
+        area.push_back({ 0,i });
+    }
+}
 void longLengthCard::destroyTile(int& x, int& y) {
     //bool isNormal = Interact(x, y);//일반카드 인지 아닌지 확인
     //if (isNormal) {
@@ -218,6 +264,18 @@ void longLengthCard::destroyTile(int& x, int& y) {
 //    name = "Square";
 //    isActive = true;
 //}
+void squareCard::checkArea() {
+    vector<Position>area;
+    area.push_back({ -1,-1 });
+    area.push_back({ -1,0 });
+    area.push_back({ -1,1 });
+    area.push_back({ 0,-1 });
+    area.push_back({ 0,0 });
+    area.push_back({ 0,1 });
+    area.push_back({ 1,-1 });
+    area.push_back({ 1,0 });
+    area.push_back({ 1,1 });
+}
 void squareCard::destroyTile(int& x, int& y) {
     //bool isNormal = Interact(x, y);//일반카드 인지 아닌지 확인
     //if (isNormal) {
@@ -268,6 +326,12 @@ void squareCard::destroyTile(int& x, int& y) {
 //    isActive = true;
 //    isClear = true;
 //}
+void purificationCard::checkArea() {
+    vector<Position>area;
+    area.push_back({ -1,0 });
+    area.push_back({ 0,0 });
+    area.push_back({ 1,0 });
+}
 void purificationCard::destroyTile(int& x, int& y) {
     /*tileMap[x][y].isActive = false;
     if (rand() % 100 < 70) {
@@ -282,6 +346,15 @@ void purificationCard::destroyTile(int& x, int& y) {
 //    name = "Cross";
 //    isActive = true;
 //}
+
+void crossCard::checkArea() {
+    vector<Position>area;
+    area.push_back({ -1,0 });
+    area.push_back({ 0,-1 });
+    area.push_back({ 0,0 });
+    area.push_back({ 0,1 });
+    area.push_back({ 1,0 });
+}
 void crossCard::destroyTile(int& x, int& y) {
     //bool isNormal = Interact(x, y);//일반카드 인지 아닌지 확인
     //if (isNormal) {
@@ -312,9 +385,17 @@ void crossCard::destroyTile(int& x, int& y) {
 //    isActive = true;
 //    isClear = true;
 //}
+void purificationCrossCard::checkArea() {
+    vector<Position>area;
+    area.push_back({ -1,0 });
+    area.push_back({ 0,-1 });
+    area.push_back({ 0,0 });
+    area.push_back({ 0,1 });
+    area.push_back({ 1,0 });
+}
 void purificationCrossCard::destroyTile(int& x, int& y) {
     /*tileMap[x][y].isActive = false;
-    tileMap[x-1][y].isActive = false;
+    //tileMap[x-1][y].isActive = false;
     tileMap[x+1][y].isActive = false;
     tileMap[x][y-1].isActive = false;
     tileMap[x][y+1].isActive = false;*/
@@ -324,6 +405,19 @@ void purificationCrossCard::destroyTile(int& x, int& y) {
 //    name = "Upgrade_Square";
 //    isActive = true;
 //}
+
+void upgradeSquareCard::checkArea() {
+    vector<Position>area;
+    area.push_back({ -1,-1 });
+    area.push_back({ -1,0 });
+    area.push_back({ -1,1 });
+    area.push_back({ 0,-1 });
+    area.push_back({ 0,0 });
+    area.push_back({ 0,1 });
+    area.push_back({ 1,-1 });
+    area.push_back({ 1,0 });
+    area.push_back({ 1,1 });
+}
 void upgradeSquareCard::destroyTile(int& x, int& y) {
     //for (int i =-1; i <2; i++) {//일반타일 형태이면 100%로 파괴
     //    for (int j =-1; j < 2; j++) {
@@ -339,6 +433,18 @@ void upgradeSquareCard::destroyTile(int& x, int& y) {
 //    name = "Upgrade_X";
 //    isActive = true;
 //}
+void upgradeXCard::checkArea() {
+    vector<Position> area;
+    area.push_back({ 4, 4 });
+    area.push_back({ 3, 3 });
+    area.push_back({ 2, 2 });
+    area.push_back({ 1, 1 });
+    area.push_back({ 0, 0 });
+    area.push_back({ -1, -1 });
+    area.push_back({ -2, -2 });
+    area.push_back({ -3, -3 });
+    area.push_back({ -4, -4 });
+}
 void upgradeXCard::destroyTile(int& x, int& y) {
     //for (int i = - 3; i < 4; i++) {//일반타일 형태이면 100%로 파괴
     //    for (int j = -3; j <4; j++) {
@@ -356,6 +462,26 @@ void upgradeXCard::destroyTile(int& x, int& y) {
 //    name = "Upgrade_Cross";
 //    isActive = true;
 //}
+void upgradeCrossCard::checkArea() {
+    vector<Position>area;
+    area.push_back({ 4,0 });
+    area.push_back({ 3,0 });
+    area.push_back({ 2,0 });
+    area.push_back({ 1,0 });
+    area.push_back({ 0,0 });
+    area.push_back({ -1,0 });
+    area.push_back({ -2,0});
+    area.push_back({ -3,0 });
+    area.push_back({ -4,0 });
+    area.push_back({ 0,4 });
+    area.push_back({ 0,3 });
+    area.push_back({ 0,2 });
+    area.push_back({ 0,1 });
+    area.push_back({ 0,-1 });
+    area.push_back({ 0,-2 });
+    area.push_back({ 0,-3 });
+    area.push_back({ 0,-4 });
+}
 void upgradeCrossCard::destroyTile(int& x, int& y) {
     //for (int i = -4; i < 5; i++) {//가로줄 전체 비활성화
     //    bool isNormal = Interact(x + i, y);
@@ -377,6 +503,22 @@ void upgradeCrossCard::destroyTile(int& x, int& y) {
 //    name = "Hell_Fire";
 //    isActive = true;
 //}
+void hellFireCard::checkArea() {
+    vector<Position>area;
+    area.push_back({ -2,0 });
+    area.push_back({ 2,0 });
+    area.push_back({ 0,2 });
+    area.push_back({ 0,-2});
+    area.push_back({ -1,-1 });
+    area.push_back({ -1,0 });
+    area.push_back({ -1,1 });
+    area.push_back({ 0,-1 });
+    area.push_back({ 0,0 });
+    area.push_back({ 0,1 });
+    area.push_back({ 1,-1 });
+    area.push_back({ 1,0 });
+    area.push_back({ 1,1 });
+}
 void hellFireCard::destroyTile(int& x, int& y) {
     //for (int i = x - 1; i < x + 2; i++) {//일반타일 형태이면 100%로 파괴
     //    for (int j = y - 1; j < y + 2; j++) {
