@@ -37,20 +37,20 @@ void TileManager::SetTile(int y, int x)
     {
       if(tmp.GetType() == SPECIAL_TILE)
       {
-
-      // 랜덤으로 3개의 노말 타일 생성
-      for (int i = 0; i < 3; ++i)
-      {
-        int randomY = std::rand() % ROW;
-        int randomX = std::rand() % COL;
-
-      // 이미 타일이 존재하지 않는 경우에만 생성
-        if (tile[randomY][randomX].GetType() != NORMAL_TILE)
+        // 랜덤으로 3개의 노말 타일 생성
+        for (int i = 0; i < 3;)
         {
-          tile[randomY][randomX].Create(NORMAL_TILE);
-          tmp.Destory();
+          int randomY = std::rand() % ROW;
+          int randomX = std::rand() % COL;
+
+          if (tile[randomY][randomX].GetType() == VOID_TILE)
+          {
+            tile[randomY][randomX].Create(NORMAL_TILE);
+            i++;
+          }
         }
       }
+      tmp.Destory();
     }
   }
 }
