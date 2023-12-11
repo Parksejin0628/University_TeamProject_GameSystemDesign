@@ -2,6 +2,7 @@
 #include"ProgramBase.h"
 #include"TileManager.h"
 #include"CardManager.h"
+#include"ScreenManager.h"
 
 class GameManager
 {
@@ -11,8 +12,11 @@ private:
 	int stageIndex;
 	int nowTurn;
 	int maxTurn;
+	vector<string> stages;
 public:
 	GameManager();
 	void InitGame();
 	void InitStage(int stageIndex);
+	void ReadFromFile();
+	void InputPlayer();
 };
