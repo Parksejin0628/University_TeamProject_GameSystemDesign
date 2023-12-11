@@ -5,6 +5,7 @@ class TileManager
 {
 private:
 	int x, y;
+	int tileCount;
 	
 	vector<vector<string>> stage;
 	vector<string> stageData;
@@ -16,4 +17,5 @@ public:
   void SetTile(int y, int x, bool cure);
   void ReadFile();             // stages벡터에 스테이지 정보 가져오기
   vector<string> GetStage(int stageIndex); //
+  bool isClear() { return tileCount == 0; }
 };

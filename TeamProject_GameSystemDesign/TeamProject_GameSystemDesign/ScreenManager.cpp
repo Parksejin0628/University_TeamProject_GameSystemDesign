@@ -84,7 +84,13 @@ void ScreenManager::PrintCard(short x, short y, Card card, unsigned short color)
 			}
 		}
 	}
-
+	for (int j = 1; j < CARD_SIZE_Y - 1; j++)
+	{
+		for (int i = 1; i < CARD_SIZE_X - 1; i++)
+		{
+			PrintString(x + i, y + j, " ");
+		}
+	}
 	for (int i = 0; i < card.GetArea().size(); i++)
 	{
 		if (card.GetArea()[i].x > 4 || card.GetArea()[i].x < -4 || card.GetArea()[i].y > 4 || card.GetArea()[i].y < -4)
@@ -150,7 +156,7 @@ void ScreenManager::PrintInGame(GameManager& gm)
 	PrintCard(CARD_DECK_POSITION_X, CARD_DECK_POSITION_Y, Card(), COLOR_GREEN);
 	PrintString(TEXT_HAND_POSITION_X, TEXT_HAND_POSITION_Y, "HAND", COLOR_YELLOW);
 	PrintString(TEXT_NEXT_POSITION_X, TEXT_NEXT_POSITION_Y, "NEXT", COLOR_YELLOW);
-	PrintString(TEXT_REMOVE_POSITION_X, TEXT_REMOVE_POSITION_Y, "REMOVE : ", COLOR_YELLOW);
+	PrintString(TEXT_REMOVE_POSITION_X, TEXT_REMOVE_POSITION_Y, "TURN : " + to_string(gm.GetNowTurn()) + " / " + to_string(gm.GetMaxTurn()), COLOR_YELLOW);
 	PrintString(TEXT_1_POSITION_X, TEXT_1_POSITION_Y, "1", COLOR_YELLOW);
 	PrintString(TEXT_2_POSITION_X, TEXT_2_POSITION_Y, "2", COLOR_YELLOW);
 	PrintString(TEXT_TOMB_POSITION_X, TEXT_TOMB_POSITION_Y, "TOMB", COLOR_YELLOW);

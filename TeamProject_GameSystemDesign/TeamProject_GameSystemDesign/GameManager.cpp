@@ -17,7 +17,33 @@ void GameManager::InitStage(int stageIndex)
 	cardChoice = 1;
 	switch (stageIndex)
 	{
+	case 1:
 		maxTurn = PLAYER_STAGE1_TURN;
+		break;
+	case 2:
+		maxTurn = PLAYER_STAGE2_TURN;
+		break;
+	case 3:
+		maxTurn = PLAYER_STAGE3_TURN;
+		break;
+	case 4:
+		maxTurn = PLAYER_STAGE4_TURN;
+		break;
+	case 5:
+		maxTurn = PLAYER_STAGE5_TURN;
+		break;
+	case 6:
+		maxTurn = PLAYER_STAGE6_TURN;
+		break;
+	case 7:
+		maxTurn = PLAYER_STAGE7_TURN;
+		break;
+	case 8:
+		maxTurn = PLAYER_STAGE8_TURN;
+		break;
+	case 9:
+		maxTurn = PLAYER_STAGE9_TURN;
+		break;
 	}
 }
 
@@ -159,6 +185,8 @@ void GameManager::InputPlayer()
 		{
 			keydown_space = true;
 			UseCard(x, y, (cardChoice == 0) ? *cardManager.GetHand().front() : *cardManager.GetHand().back());
+			cardManager.playerSelect(cardChoice + 1);
+			ScreenManager::PrintInGame(*this);
 			break;
 		}
 		else if (!GetAsyncKeyState(VK_SPACE))
@@ -213,13 +241,27 @@ void GameManager::InputPlayer()
 
 void GameManager::UseCard(int x, int y, Card card)
 {
+	int temp;
 	for (int i = 0; i < card.GetArea().size(); i++)
 	{
 		if (x + card.GetArea()[i].x < 0 || x + card.GetArea()[i].x > 8 || y + card.GetArea()[i].y < 0 || y + card.GetArea()[i].y > 8)
 		{
 			continue;
 		}
-		tileManager.SetTile(y + card.GetArea()[i].y, x + card.GetArea()[i].x, false);
+		temp = rand() % 100 + 1;
+		if (temp <= card.GetArea()[i].probability && tileManager.tile[y + card.GetArea()[i].y][x + card.GetArea()[i].x].GetType() != VOID_TILE)
+		{
+			tileManager.SetTile(y + card.GetArea()[i].y, x + card.GetArea()[i].x, false);
+		}
+		else if(tileManager.tile[y + card.GetArea()[i].y][x + card.GetArea()[i].x].GetType() == NORMAL_TILE)
+		{
+			ScreenManager::PrintTile((x + card.GetArea()[i].x) * TILE_SIZE_X + TILE_POSITION_X, (y + card.GetArea()[i].y) * TILE_SIZE_Y + TILE_POSITION_Y, "   ", COLOR_WHITE);
+		}
+		else if (tileManager.tile[y + card.GetArea()[i].y][x + card.GetArea()[i].x].GetType() == SPECIAL_TILE)
+		{
+			ScreenManager::PrintTile((x + card.GetArea()[i].x) * TILE_SIZE_X + TILE_POSITION_X, (y + card.GetArea()[i].y) * TILE_SIZE_Y + TILE_POSITION_Y, "   ", COLOR_PURPLE);
+		}
+		
 	}
 }
 

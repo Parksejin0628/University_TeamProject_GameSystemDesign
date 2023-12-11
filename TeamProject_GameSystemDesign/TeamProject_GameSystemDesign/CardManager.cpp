@@ -15,14 +15,8 @@ CardManager::CardManager() { //스테이지 보상별 Player 생성
     }
 }
 
-void CardManager::playerSelect() {// 주석처리한건 따로 함수로 만들던지 타일 영역과 상호작용 필요
-    int playerSelection;
-    int tilePosX, tilePosY;
+void CardManager::playerSelect(int playerSelection) {// 주석처리한건 따로 함수로 만들던지 타일 영역과 상호작용 필요
     Card *selectedCard;
-    cout << "몇 번째 카드를 선택할 것 인가요?(1or2)" << endl;
-    cin >> playerSelection;
-    cout << "위치를 선택해 주세요 (x,y)" << endl;
-    cin >> tilePosX >> tilePosY;
 
     if (playerSelection == 1) {
         selectedCard = hand.front();
@@ -97,8 +91,8 @@ void CardManager::playerSelect() {// 주석처리한건 따로 함수로 만들�
         tomb.push(selectedCard);//사용한 카드 tomb에 추가
         hand.push_back(ready.front());//ready의 맨 앞카드를 가져옴
         ready.pop();//ready의 맨앞 삭제
-        ready.push(cards.front());//cards의 맨앞 카드 가져옴
-        if (cards.size()> 0) {
+        if (cards.size() > 0) {
+            ready.push(cards.front());//cards의 맨앞 카드 가져옴
             cards.pop();//card의 맨앞 삭제
         }
         else {
@@ -106,6 +100,9 @@ void CardManager::playerSelect() {// 주석처리한건 따로 함수로 만들�
             ready.push(cards.front());//레디에 카드추가
             cards.pop();//추가한 카드를 카드덱에서 삭제
         }
+        
+        
+        
     }
     else {
         cout << "잘 못된 입력입니다." << endl;
@@ -135,6 +132,7 @@ void CardManager::InitDeck() {
 
 void CardManager::shuffleCards() {
     vector<Card*> tempQueue;
+    cout << "error" << endl;
     while (!cards.empty()) {
         tempQueue.push_back(cards.front());
         cards.pop();
@@ -149,8 +147,7 @@ void CardManager::shuffleCards() {
     }
 }
 
-void CardManager::rewardCard() {
-    int nowstage = 0;
+void CardManager::rewardCard(int nowstage) {
     //stage정보 GameManager에서 받아온다는 가정
     switch (nowstage) {
     case 1: //x 3장 추가

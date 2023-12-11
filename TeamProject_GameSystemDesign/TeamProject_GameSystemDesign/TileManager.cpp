@@ -15,11 +15,16 @@ TileManager::TileManager()
 
 void TileManager::InitTile(int stageIndex)
 {
+	tileCount = 0;
   for (int y = 0; y < stage[stageIndex].size(); y++)
   {
     for (int x = 0; x < stage[stageIndex][y].length(); x++)
     {
         int value = stoi(stage[stageIndex][y].substr(x, 1));
+		if (value != 0)
+		{
+			tileCount++;
+		}
         tile[y][x].Create(value);
     }
   }
@@ -72,10 +77,12 @@ void TileManager::SetTile(int y, int x, bool cure)
 				{
 					tile[randomY][randomX].Create(NORMAL_TILE);
 					i++;
+					tileCount++;
 				}
 			}
 		}
 	}
 	tile[y][x].Destory();
+	tileCount--;
   }
 }

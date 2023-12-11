@@ -24,6 +24,10 @@ public:
 	void ReadFromFile();
 	void InputPlayer();
 	void UseCard(int x, int y, Card card);
+	int GetNowTurn() { return nowTurn; }
+	int GetMaxTurn() { return maxTurn; }
+	int AddTurn() { return ++nowTurn; }
+	
 
 	CardManager& GetCardManager();
 	TileManager& GetTIleManager();
