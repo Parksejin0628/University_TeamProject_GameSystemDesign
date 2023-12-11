@@ -5,18 +5,18 @@ class Tile
 {
 private:
   int x, y;
-  TileType type;
+  int type;
 
 public:
   Tile(){}
 
-  Tile(int x, int y, TileType type) : x(x), y(y), type(type) {}
+  Tile(int x, int y, int type) : x(x), y(y), type(type) {}
 
   bool CanInteract();
 
-  void Create(TileType type);
+  void Create(int type);
 
   void Destory();
 
-  TileType GetType();
+  int GetType();
 };

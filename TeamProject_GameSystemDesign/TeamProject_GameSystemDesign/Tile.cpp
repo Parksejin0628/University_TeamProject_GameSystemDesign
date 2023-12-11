@@ -1,5 +1,5 @@
 #include "tile.h"
-void Tile::Create(TileType type)
+void Tile::Create(int type)
 {
     this->type = type;
 }
@@ -18,7 +18,7 @@ bool Tile::CanInteract()
     return true;
 }
 
-TileType Tile::GetType()
+int Tile::GetType()
 {
     return this->type;
 }
