@@ -10,6 +10,7 @@ TileManager::TileManager()
       tile[y][x] = Tile(y, x, VOID_TILE);
     }
   }
+  ReadFile();
 }
 
 void TileManager::InitTile(int stageIndex)
@@ -21,6 +22,40 @@ void TileManager::InitTile(int stageIndex)
       tile[y][x].Destory();
     }
   }
+}
+
+void TileManager::ReadFile()
+{
+ifstream fin("map.txt");
+if (!fin) {
+	cout << "words.txt 파일을 열 수 없습니다" << endl;
+	return; // 열기 오류
+}
+
+string line;
+
+while (getline(fin, line)) { // fin 파일에서 한 라인 읽기
+	if (line.empty())
+	{
+		// 빈 줄이 나오면 새로운 스테이지 생성
+		if (!stageData.empty())
+		{
+			stage.emplace_back(stageData);
+			stageData.clear();
+
+		}
+	}
+	else
+	{
+		stageData.push_back(line);
+	}
+}
+
+fin.close();
+}
+
+vector<string> TileManager::GetStage(int stageIndex){
+  return stage[stageIndex];
 }
 
 void TileManager::SetTile(int y, int x)

@@ -11,10 +11,8 @@ private:
 	int stageIndex;
 	int nowTurn;
 	int maxTurn;
-	vector<string> stages;
 public:
 	GameManager();
 	void InitGame();
 	void InitStage(int stageIndex);
-	void ReadFromFile();
 };
