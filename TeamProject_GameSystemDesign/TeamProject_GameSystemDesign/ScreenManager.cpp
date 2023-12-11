@@ -1,21 +1,21 @@
-#pragma once
+Ôªø#pragma once
 #include"ScreenManager.h"
 
-void PrintScreen::SetColor(unsigned short color)
+void ScreenManager::SetColor(unsigned short color)
 {
 	SetConsoleTextAttribute(GetStdHandle(STD_OUTPUT_HANDLE), color);
 
 	return;
 }
 
-void PrintScreen::Goto_xy(short x, short y)
+void ScreenManager::Goto_xy(short x, short y)
 {
 	HANDLE handle = GetStdHandle(STD_OUTPUT_HANDLE);
 	Position pos = { x, y };
 	SetConsoleCursorPosition(handle, pos);
 }
 
-void PrintScreen::PrintString(short x, short y, string printStr, unsigned short color)
+void ScreenManager::PrintString(short x, short y, string printStr, unsigned short color)
 {
 	SetColor(color);
 	Goto_xy(x, y);
@@ -23,22 +23,23 @@ void PrintScreen::PrintString(short x, short y, string printStr, unsigned short 
 	SetColor(COLOR_WHITE);
 }
 
-void PrintScreen::PrintTile(short x, short y, string tileStr, unsigned short color)
+void ScreenManager::PrintTile(short x, short y, string tileStr, unsigned short color)
 {
-	PrintScreen::PrintString(x + 0, y, "¶£", color);
-	PrintScreen::PrintString(x + 1, y, "¶°", color);
-	PrintScreen::PrintString(x + 2, y, "¶°", color);
-	PrintScreen::PrintString(x + 3, y, "¶°", color);
-	PrintScreen::PrintString(x + 4, y, "¶§", color);
-	PrintString(x + 0, y + 1, "¶¢", color);
-	PrintString(x + 1, y + 1, tileStr.substr(0, 3), color);
-	PrintString(x + 4, y + 1, "¶¢", color);
+	PrintString(x + 0, y, "‚îå", color);
+	PrintString(x + 1, y, "‚îÄ", color);
+	PrintString(x + 2, y, "‚îÄ", color);
+	PrintString(x + 3, y, "‚îÄ", color);
+	PrintString(x + 4, y, "‚îê", color);
 
-	PrintString(x + 0, y + 2, "¶¶", color);
-	PrintString(x + 1, y + 2, "¶°", color);
-	PrintString(x + 2, y + 2, "¶°", color);
-	PrintString(x + 3, y + 2, "¶°", color);
-	PrintString(x + 4, y + 2, "¶•", color);
+	PrintString(x + 0, y + 1, "‚îÇ", color);
+	PrintString(x + 1, y + 1, tileStr.substr(0, 3), color);
+	PrintString(x + 4, y + 1, "‚îÇ", color);
+
+	PrintString(x + 0, y + 2, "‚îî", color);
+	PrintString(x + 1, y + 2, "‚îÄ", color);
+	PrintString(x + 2, y + 2, "‚îÄ", color);
+	PrintString(x + 3, y + 2, "‚îÄ", color);
+	PrintString(x + 4, y + 2, "‚îò", color);
 }
 
 void ScreenManager::PrintCard(short x, short y, string cardName, unsigned short color)
@@ -51,41 +52,41 @@ void ScreenManager::PrintCard(short x, short y, string cardName, unsigned short 
 			{
 				if (ySize == 0)
 				{
-					PrintString(x + xSize, y + ySize, "¶£", color);
+					PrintString(x + xSize, y + ySize, "‚îå", color);
 				}
 				else if (ySize == CARD_SIZE_Y - 1)
 				{
-					PrintString(x + xSize, y + ySize, "¶¶", color);
+					PrintString(x + xSize, y + ySize, "‚îî", color);
 				}
 				else
 				{
-					PrintString(x + xSize, y + ySize, "¶¢", color);
+					PrintString(x + xSize, y + ySize, "‚îÇ", color);
 				}
 			}
 			else if (xSize == CARD_SIZE_X - 1)
 			{
 				if (ySize == 0)
 				{
-					PrintString(x + xSize, y + ySize, "¶§", color);
+					PrintString(x + xSize, y + ySize, "‚îê", color);
 				}
 				else if (ySize == CARD_SIZE_Y - 1)
 				{
-					PrintString(x + xSize, y + ySize, "¶•", color);
+					PrintString(x + xSize, y + ySize, "‚îò", color);
 				}
 				else
 				{
-					PrintString(x + xSize, y + ySize, "¶¢", color);
+					PrintString(x + xSize, y + ySize, "‚îÇ", color);
 				}
 			}
 			else if (ySize == 0 || ySize == CARD_SIZE_Y - 1)
 			{
-				PrintString(x + xSize, y + ySize, "¶°", color);
+				PrintString(x + xSize, y + ySize, "‚îÄ", color);
 			}
 		}
 	}
 
 
-	
+
 	PrintString(x + CARD_SIZE_X, y + CARD_SIZE_Y, "", color);
 }
 
@@ -102,7 +103,7 @@ void ScreenManager::PrintStage(int stageIndex, unsigned short color)
 
 void ScreenManager::PrintInGame(int stageIndex, GameManager& gm)
 {
-	PrintStage(stageIndex);
+	PrintStage(stageIndex, COLOR_BLUE);
 	PrintCard(CARD_HAND1_POSITION_X, CARD_HAND1_POSITION_Y, "HAND1", COLOR_GREEN);
 	PrintCard(CARD_HAND2_POSITION_X, CARD_HAND2_POSITION_Y, "HAND2", COLOR_GREEN);
 	PrintCard(CARD_WAIT1_POSITION_X, CARD_WAIT1_POSITION_Y, "WAIT1", COLOR_GREEN);
@@ -118,10 +119,5 @@ void ScreenManager::PrintInGame(int stageIndex, GameManager& gm)
 	PrintString(TEXT_DECK_POSITION_X, TEXT_DECK_POSITION_Y, "DECK", COLOR_YELLOW);
 	PrintString(1, 27, " ");
 
-	PrintScreen::PrintString(x + 0, y + 2, "¶¶", color);
-	PrintScreen::PrintString(x + 1, y + 2, "¶°", color);
-	PrintScreen::PrintString(x + 2, y + 2, "¶°", color);
-	PrintScreen::PrintString(x + 3, y + 2, "¶°", color);
-	PrintScreen::PrintString(x + 4, y + 2, "¶•", color);
 }
 
