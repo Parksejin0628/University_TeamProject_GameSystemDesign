@@ -15,6 +15,104 @@ CardManager::CardManager() { //스테이지 보상별 Player 생성
     }
 }
 
+void CardManager::playerSelect() {// 주석처리한건 따로 함수로 만들던지 타일 영역과 상호작용 필요
+    int playerSelection;
+    int tilePosX, tilePosY;
+    Card *selectedCard;
+    cout << "몇 번째 카드를 선택할 것 인가요?(1or2)" << endl;
+    cin >> playerSelection;
+    cout << "위치를 선택해 주세요 (x,y)" << endl;
+    cin >> tilePosX >> tilePosY;
+
+    if (playerSelection == 1) {
+        selectedCard = hand.front();
+        hand.pop_front();//핸드의 첫번째 카드 삭제
+    }
+    else {
+        selectedCard = hand.back();
+        hand.pop_back();//핸드의 두번째 카드 삭제
+    }
+
+    if (playerSelection == 1 || playerSelection == 2) { 
+
+        switch (selectedCard->getType()) {
+        case 1:
+            delete selectedCard;
+            selectedCard = new WidthCard();
+            break;
+        case 2:
+            delete selectedCard;
+            selectedCard = new LengthCard();
+            break;
+        case 3:
+            delete selectedCard;
+            selectedCard = new DotCard();
+            break;
+        case 4:
+            delete selectedCard;
+            selectedCard = new XCard();
+            break;
+        case 5:
+            delete selectedCard;
+            selectedCard = new LongWidthCard();
+            break;
+        case 6:
+            delete selectedCard;
+            selectedCard = new LongLengthCard();
+            break;
+        case 7:
+            delete selectedCard;
+            selectedCard = new SquareCard();
+            break;
+        case 8:
+            delete selectedCard;
+            selectedCard = new PurificationCard(PURIFICATION_TYPE);
+            break;
+        case 9:
+            delete selectedCard;
+            selectedCard = new CrossCard();
+            break;
+        case 10:
+            delete selectedCard;
+            selectedCard = new PurificationCrossCard();
+            break;
+        case 11:
+            delete selectedCard;
+            selectedCard = new UpgradeSquareCard();
+            break;
+        case 12:
+            delete selectedCard;
+            selectedCard = new UpgradeXCard();
+            break;
+        case 13:
+            delete selectedCard;
+            selectedCard = new UpgradeCrossCard();
+            break;
+        case 14:
+            delete selectedCard;
+            selectedCard = new HellFireCard();
+            break;
+        }
+        //사용 한 이후
+        tomb.push(selectedCard);//사용한 카드 tomb에 추가
+        hand.push_back(ready.front());//ready의 맨 앞카드를 가져옴
+        ready.pop();//ready의 맨앞 삭제
+        ready.push(cards.front());//cards의 맨앞 카드 가져옴
+        if (cards.size()> 0) {
+            cards.pop();//card의 맨앞 삭제
+        }
+        else {
+            shuffleTomb();
+            ready.push(cards.front());//레디에 카드추가
+            cards.pop();//추가한 카드를 카드덱에서 삭제
+        }
+    }
+    else {
+        cout << "잘 못된 입력입니다." << endl;
+        exit(1);
+    }
+}
+
 CardManager::~CardManager() {
     while (!cards.empty()) {
         delete cards.front();
@@ -68,7 +166,7 @@ void CardManager::rewardCard() {
             cards.push(new SquareCard());
         }
     case 4:// purification 1장 추가
-        cards.push(new PurificationCard());
+        cards.push(new PurificationCard(PURIFICATION_TYPE,true));
         break;
     case 5://longlength 1장 추가
         cards.push(new LongLengthCard());
@@ -95,6 +193,10 @@ void CardManager::deleteCard() {//deck카드에서 삭제하기
             tempDeck.push_back(cards.front());
             cards.pop();
         }
+
+        for (int i = 0; i < tempDeck.size(); i++) {
+            printf("%d. Type: %d\n", i + 1, tempDeck[i]->getType());//tempDeck에 존재하는 카드 정보 모두 출력
+        }
         printf("삭제할 카드의 인덱스를 입력하세요 :\n");
         scanf("%d", &deleteSelect);
         this->deleteNum--; //주어진 삭제권 하나 사용
@@ -110,5 +212,21 @@ void CardManager::deleteCard() {//deck카드에서 삭제하기
         for (auto card : tempDeck) {//나머지 카드 다시 넣기
             cards.push(card);
         }
+    }
+}
+
+void CardManager::shuffleTomb() {
+    vector<Card*> tempQueue;
+    while (!tomb.empty()) {
+        tempQueue.push_back(tomb.front());
+        tomb.pop();
+    }
+
+    random_device rd;
+    default_random_engine rng(rd());
+    shuffle(tempQueue.begin(), tempQueue.end(), rng);
+
+    for (auto card : tempQueue) {
+        cards.push(card);
     }
 }

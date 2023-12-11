@@ -12,8 +12,10 @@ protected:
     vector<Area> area;
 public:
     Card(CardType type);
+    virtual ~Card();
     vector<Area>& GetArea();
     bool CreateMergedCard(Card& other, Card& result);
+    CardType getType();
 };
 
 class WidthCard : public Card {
@@ -55,7 +57,7 @@ public:
 class PurificationCard :public Card {
 public:
     bool isClear;
-    PurificationCard();
+    PurificationCard(CardType type, bool isClear = true);
 };
 
 class CrossCard : public Card {

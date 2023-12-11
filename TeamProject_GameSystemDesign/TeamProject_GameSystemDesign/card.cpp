@@ -4,7 +4,9 @@
 Card::Card(CardType type) {
 
 }
+Card::~Card() {
 
+}
 vector<Area>& Card::GetArea()
 {
     return area;
@@ -37,11 +39,14 @@ bool Card::CreateMergedCard(Card& other, Card& result) {
     }
 }
 
+CardType Card::getType() {
+    return this->type;
+}
 WidthCard::WidthCard() : Card(WIDTH_TYPE)
 {
-    area.push_back({ 0,0, 100 });
-    area.push_back({ 1,0 , 50 });
-    area.push_back({ -1,0 , 50 });
+    area.push_back({ 0,0, 100});
+    area.push_back({ 1,0 , 50});
+    area.push_back({ -1,0 , 50});
 }
 
 
@@ -113,7 +118,7 @@ SquareCard::SquareCard() : Card(SQUARE_TYPE)
     area.push_back({ -1,-1 , 65 });
 }
 
-PurificationCard::PurificationCard() : Card(PURIFICATION_TYPE), isClear(true)
+PurificationCard::PurificationCard(CardType type, bool isClear) : Card(PURIFICATION_TYPE),isClear(true)
 {
     area.push_back({ 0,0, 100 });
     area.push_back({ 1,0 , 70 });
@@ -129,7 +134,8 @@ CrossCard::CrossCard() : Card(CROSS_TYPE)
     area.push_back({ 0,-1 , 100 });
 }
 
-PurificationCrossCard::PurificationCrossCard() : PurificationCard()
+
+PurificationCrossCard::PurificationCrossCard() : PurificationCard(PURIFICATION_CROSS_TYPE)
 {
     area.push_back({ 0,0, 100 });
     area.push_back({ 1,0 , 100 });
@@ -180,7 +186,6 @@ UpgradeCrossCard::UpgradeCrossCard() : Card(UPGRADE_CROSS_TYPE)
     area.push_back({ -2,0 , 100 });
     area.push_back({ -3,0 , 100 });
     area.push_back({ -4,0 , 100 });
-    area.push_back({ 0,0, 100 });
     area.push_back({ 0,1 , 100 });
     area.push_back({ 0,2 , 100 });
     area.push_back({ 0,3 , 100 });
@@ -188,6 +193,7 @@ UpgradeCrossCard::UpgradeCrossCard() : Card(UPGRADE_CROSS_TYPE)
     area.push_back({ 0,-1 , 100 });
     area.push_back({ 0,-2 , 100 });
     area.push_back({ 0,-3 , 100 });
+    area.push_back({ 0,-3 , 100});
     area.push_back({ 0,-4 , 100 });
 }
 HellFireCard::HellFireCard() : Card(HELLFIRE_TYPE)
